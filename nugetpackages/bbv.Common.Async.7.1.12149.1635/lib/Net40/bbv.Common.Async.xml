@@ -1,0 +1,528 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>bbv.Common.Async</name>
+    </assembly>
+    <members>
+        <member name="T:bbv.Common.Async.AsyncResult">
+            <summary>
+            Result for asynchronous tasks
+            </summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncResult.DefaultInitialLeaseTime">
+            <summary>
+            The default value for the InitialLeaseTime for ISponsor in seconds
+            </summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncResult.DefaultSponsorshipTimeout">
+            <summary>
+            The default value for the Sponsorship Timeout for ISponsor in seconds
+            </summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncResult.asyncCallback">
+            <summary>
+            The callback function that is executed after completion.
+            </summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncResult.asyncState">
+            <summary>
+            A user-defined object that qualifies or contains information about an asynchronous operation.
+            </summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncResult.initialLeaseTime">
+            <summary>
+            The initial lease time for the ISponsor
+            </summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncResult.sponsorshipTimeout">
+            <summary>
+            The sponsor ship timeout
+            </summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncResult.completionState">
+            <summary>
+            The current state of the asynchronous operation.
+            </summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncResult.asyncWaitHandle">
+            <summary>
+            Wait handle for waiting for completion of the operation.
+            </summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncResult.exception">
+            <summary>
+            The exception that occurred during execution of the operation.
+            </summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncResult.disposed">
+            <summary>
+            Indicated if the object has been disposed
+            </summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncResult.data">
+            <summary>
+            A dictionary that is used to store user defined data.
+            </summary>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncResult.#ctor(System.AsyncCallback,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:bbv.Common.Async.AsyncResult"/> class.
+            </summary>
+            <param name="asyncCallback">The callback function that is called after the task has completed.</param>
+            <param name="state">A user-defined object that qualifies or contains information about an asynchronous 
+            operation.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncResult.#ctor(System.AsyncCallback,System.Object,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:bbv.Common.Async.AsyncResult"/> class.
+            </summary>
+            <param name="asyncCallback">The callback function that is called after the task has completed.</param>
+            <param name="state">A user-defined object that qualifies or contains information about an asynchronous
+            operation.</param>
+            <param name="initialLeaseTime">The initial sponsor lease time.</param>
+            <param name="sponsorshipTimeout">The sponsorship timeout.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncResult.IsDisposed">
+            <summary>
+            Determines whether this instance is disposed.
+            </summary>
+            <returns>
+                <c>true</c> if this instance is disposed; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncResult.SetAsCompleted(System.Exception,System.Boolean)">
+            <summary>
+            Sets the task to the completed state. 
+            </summary>
+            <param name="occurredException">An exception that occurred while executing the task. Passing null for 
+            exception means no error occurred. This is the common case.</param>
+            <param name="completedSynchronously">True if the task run synchronously.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncResult.EndInvoke">
+            <summary>
+            Waits until the task has completed. If an exception occurred it is re thrown.
+            </summary>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncResult.Dispose">
+            <summary>
+            Releases lifetime service.
+            </summary>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncResult.InitializeLifetimeService">
+            <summary>
+            Obtains a lifetime service object to control the lifetime policy for this instance.
+            </summary>
+            <returns>
+            An object of type <see cref="T:System.Runtime.Remoting.Lifetime.ILease"></see> used to control the 
+            lifetime policy for this instance. This is the current lifetime service object for this instance if 
+            one exists; otherwise, a new lifetime service object initialized to the value of the 
+            <see cref="P:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseManagerPollTime"></see> property.
+            </returns>
+            <exception cref="T:System.Security.SecurityException">The immediate caller does not have infrastructure 
+            permission. </exception>
+            <PermissionSet><IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, 
+            Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" 
+            Flags="RemotingConfiguration, Infrastructure"/></PermissionSet>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncResult.Renewal(System.Runtime.Remoting.Lifetime.ILease)">
+            <summary>
+            Requests a sponsoring client to renew the lease for the specified object.
+            </summary>
+            <param name="lease">The lifetime lease of the object that requires lease renewal.</param>
+            <returns>
+            The additional lease time for the specified object.
+            </returns>
+            <exception cref="T:System.Security.SecurityException">The immediate caller makes the call through 
+            a reference to the interface and does not have infrastructure permission. </exception>
+            <PermissionSet><IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, 
+            Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="Infrastructure"/>
+            </PermissionSet>
+        </member>
+        <member name="P:bbv.Common.Async.AsyncResult.AsyncState">
+            <summary>
+            Gets a user-defined object that qualifies or contains information about an asynchronous operation.
+            </summary>
+            <value></value>
+            <returns>A user-defined object that qualifies or contains information about an asynchronous 
+            operation.</returns>
+        </member>
+        <member name="P:bbv.Common.Async.AsyncResult.CompletedSynchronously">
+            <summary>
+            Gets a value indicating whether the asynchronous operation completed synchronously.
+            </summary>
+            <value></value>
+            <returns>true if the asynchronous operation completed synchronously; otherwise, false.</returns>
+        </member>
+        <member name="P:bbv.Common.Async.AsyncResult.AsyncWaitHandle">
+            <summary>
+            Gets a <see cref="T:System.Threading.WaitHandle"></see> that is used to wait for an asynchronous 
+            operation to complete.
+            </summary>
+            <value></value>
+            <returns>A <see cref="T:System.Threading.WaitHandle"></see> that is used to wait for an asynchronous 
+            operation to complete.</returns>
+        </member>
+        <member name="P:bbv.Common.Async.AsyncResult.IsCompleted">
+            <summary>
+            Gets a value indicating whether the asynchronous operation has completed.
+            </summary>
+            <value></value>
+            <returns>true if the operation is complete; otherwise, false.</returns>
+        </member>
+        <member name="P:bbv.Common.Async.AsyncResult.Data">
+            <summary>
+            Gets a dictionary that can be used to store user defined data.
+            </summary>
+        </member>
+        <member name="T:bbv.Common.Async.AsyncResult.CompletionState">
+            <summary>
+            The possible states of the asynchronous operation.
+            </summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncResult.CompletionState.Pending">
+            <summary>
+            Operation is not finished yet
+            </summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncResult.CompletionState.CompletedSynchronously">
+            <summary>
+            Operation was executed synchronously
+            </summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncResult.CompletionState.CompletedAsynchronously">
+            <summary>
+            Operation was executed asynchronously
+            </summary>
+        </member>
+        <member name="T:bbv.Common.Async.AsyncWorker">
+            <summary>
+            The <see cref="T:bbv.Common.Async.AsyncWorker"/> is a small wrapper around the <see cref="T:System.ComponentModel.BackgroundWorker"/> for easier usage
+            outside of UI components.
+            The async worker has to be created on the UI thread.
+            </summary>
+        </member>
+        <member name="T:bbv.Common.Async.IAsyncWorker">
+            <summary>
+            The <see cref="T:bbv.Common.Async.AsyncWorker"/> is a small wrapper around the <see cref="T:System.ComponentModel.BackgroundWorker"/> for easier usage
+            outside of UI components.
+            </summary>
+        </member>
+        <member name="M:bbv.Common.Async.IAsyncWorker.RunWorkerAsync">
+            <summary>
+            Starts execution of a background operation.
+            </summary>
+        </member>
+        <member name="M:bbv.Common.Async.IAsyncWorker.RunWorkerAsync(System.Object)">
+            <summary>
+            Starts execution of a background operation.
+            </summary>
+            <param name="argument">The argument passed to the worker.</param>
+        </member>
+        <member name="M:bbv.Common.Async.IAsyncWorker.CancelAsync">
+            <summary>
+            Cancels the operation.
+            </summary>
+        </member>
+        <member name="M:bbv.Common.Async.IAsyncWorker.ReportProgress(System.Int32,System.Object)">
+            <summary>
+            Raises the <see cref="M:bbv.Common.Async.AsyncWorker.ProgressChanged(System.Object,System.ComponentModel.ProgressChangedEventArgs)"/> event.
+            </summary>
+            <param name="percentProgress">The percent progress.</param>
+            <param name="userState">State of the user.</param>
+        </member>
+        <member name="M:bbv.Common.Async.IAsyncWorker.AddExtension(bbv.Common.Async.IAsyncWorkerExtension)">
+            <summary>
+            Adds the extension.
+            </summary>
+            <param name="extension">The extension.</param>
+        </member>
+        <member name="M:bbv.Common.Async.IAsyncWorker.RemoveExtension(bbv.Common.Async.IAsyncWorkerExtension)">
+            <summary>
+            Removes the extension.
+            </summary>
+            <param name="extension">The extension.</param>
+        </member>
+        <member name="M:bbv.Common.Async.IAsyncWorker.ClearExtensions">
+            <summary>
+            Clears all extensions.
+            </summary>
+        </member>
+        <member name="P:bbv.Common.Async.IAsyncWorker.IsBusy">
+            <summary>
+            Gets a value indicating whether an asynchronous operation is running.
+            </summary>
+        </member>
+        <member name="P:bbv.Common.Async.IAsyncWorker.CancellationPending">
+            <summary>
+            Gets a value indicating whether the operation should be canceled.
+            </summary>
+        </member>
+        <member name="P:bbv.Common.Async.IAsyncWorker.WorkerReportsProgress">
+            <summary>
+            Gets or sets a value indicating whether progress can be reported.
+            </summary>
+        </member>
+        <member name="P:bbv.Common.Async.IAsyncWorker.WorkerSupportsCancellation">
+            <summary>
+            Gets or sets a value indicating whether cancellation of asynchronous operation is supported.
+            </summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncWorker.completed">
+            <summary>The completed delegate.</summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncWorker.backgroundWorker">
+            <summary>The background worker to execute the operation.</summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncWorker.worker">
+            <summary>The worker delegate.</summary>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncWorker.progress">
+            <summary>The progress delegate.</summary>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.#ctor(System.ComponentModel.DoWorkEventHandler)">
+            <summary>
+            Initializes a new instance of the <see cref="T:bbv.Common.Async.AsyncWorker"/> class.
+            </summary>
+            <param name="worker">The worker delegate.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.#ctor(System.String,System.ComponentModel.DoWorkEventHandler)">
+            <summary>
+            Initializes a new instance of the <see cref="T:bbv.Common.Async.AsyncWorker"/> class.
+            </summary>
+            <param name="name">The name used in log messages.</param>
+            <param name="worker">The worker delegate.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.#ctor(System.ComponentModel.DoWorkEventHandler,System.ComponentModel.RunWorkerCompletedEventHandler)">
+            <summary>
+            Initializes a new instance of the <see cref="T:bbv.Common.Async.AsyncWorker"/> class.
+            </summary>
+            <param name="worker">The worker delegate.</param>
+            <param name="completed">The completed delegate.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.#ctor(System.String,System.ComponentModel.DoWorkEventHandler,System.ComponentModel.RunWorkerCompletedEventHandler)">
+            <summary>
+            Initializes a new instance of the <see cref="T:bbv.Common.Async.AsyncWorker"/> class.
+            </summary>
+            <param name="name">The name used in log messages.</param>
+            <param name="worker">The worker delegate.</param>
+            <param name="completed">The completed delegate.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.#ctor(System.ComponentModel.DoWorkEventHandler,System.ComponentModel.ProgressChangedEventHandler,System.ComponentModel.RunWorkerCompletedEventHandler)">
+            <summary>
+            Initializes a new instance of the <see cref="T:bbv.Common.Async.AsyncWorker"/> class.
+            </summary>
+            <param name="worker">The worker delegate.</param>
+            <param name="progress">The progress delegate.</param>
+            <param name="completed">The completed delegate.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.#ctor(System.String,System.ComponentModel.DoWorkEventHandler,System.ComponentModel.ProgressChangedEventHandler,System.ComponentModel.RunWorkerCompletedEventHandler)">
+            <summary>
+            Initializes a new instance of the <see cref="T:bbv.Common.Async.AsyncWorker"/> class.
+            </summary>
+            <param name="name">The name used in log messages.</param>
+            <param name="worker">The worker delegate.</param>
+            <param name="progress">The progress delegate.</param>
+            <param name="completed">The completed delegate.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.AddExtension(bbv.Common.Async.IAsyncWorkerExtension)">
+            <summary>
+            Adds the extension.
+            </summary>
+            <param name="extension">The extension.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.RemoveExtension(bbv.Common.Async.IAsyncWorkerExtension)">
+            <summary>
+            Removes the extension.
+            </summary>
+            <param name="extension">The extension.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.ClearExtensions">
+            <summary>
+            Clears all extensions.
+            </summary>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.RunWorkerAsync">
+            <summary>
+            Starts execution of a background operation.
+            </summary>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.RunWorkerAsync(System.Object)">
+            <summary>
+            Starts execution of a background operation.
+            </summary>
+            <param name="argument">The argument passed to the worker delegate.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.CancelAsync">
+            <summary>
+            Cancels the operation.
+            </summary>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.ReportProgress(System.Int32,System.Object)">
+            <summary>
+            Raises the <see cref="M:bbv.Common.Async.AsyncWorker.ProgressChanged(System.Object,System.ComponentModel.ProgressChangedEventArgs)"/> event.
+            </summary>
+            <param name="percentProgress">The percent progress.</param>
+            <param name="userState">State of the user.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.Completed(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            Calls the completed delegate if there is any. If no completed delegate is defined and there exists an exception then an exception is thrown.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">An <see cref="T:System.EventArgs"></see> that contains the event data.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Calls the worker delegate.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.ComponentModel.DoWorkEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorker.ProgressChanged(System.Object,System.ComponentModel.ProgressChangedEventArgs)">
+            <summary>
+            Calls the progress delegate.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.ComponentModel.ProgressChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:bbv.Common.Async.AsyncWorker.Name">
+            <summary>
+            Gets the name of this worker.
+            </summary>
+        </member>
+        <member name="P:bbv.Common.Async.AsyncWorker.IsBusy">
+            <summary>
+            Gets a value indicating whether an asynchronous operation is running.
+            </summary>
+        </member>
+        <member name="P:bbv.Common.Async.AsyncWorker.CancellationPending">
+            <summary>
+            Gets a value indicating whether the operation should be canceled.
+            </summary>
+        </member>
+        <member name="P:bbv.Common.Async.AsyncWorker.WorkerReportsProgress">
+            <summary>
+            Gets or sets a value indicating whether progress can be reported.
+            </summary>
+        </member>
+        <member name="P:bbv.Common.Async.AsyncWorker.WorkerSupportsCancellation">
+            <summary>
+            Gets or sets a value indicating whether cancellation of asynchronous operation is supported.
+            </summary>
+        </member>
+        <member name="T:bbv.Common.Async.AsyncWorkerException">
+            <summary>
+            This exception is thrown if an error occurs in the asynchronous operation and there is no completed event handler.
+            </summary>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorkerException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:bbv.Common.Async.AsyncWorkerException"/> class.
+            </summary>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorkerException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:bbv.Common.Async.AsyncWorkerException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorkerException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:bbv.Common.Async.AsyncWorkerException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncWorkerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:bbv.Common.Async.AsyncWorkerException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="info"/> parameter is null.
+            </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">
+            The class name is null or <see cref="P:System.Exception.HResult"/> is zero (0).
+            </exception>
+        </member>
+        <member name="T:bbv.Common.Async.AsyncResult`1">
+            <summary>
+            Result for asynchronous tasks with a return value.
+            </summary>    
+            <typeparam name="TResult">The result type</typeparam>
+        </member>
+        <member name="F:bbv.Common.Async.AsyncResult`1.resultValue">
+            <summary>
+            The result of the asynchronous operation. It is set when the operation is completed.
+            </summary>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncResult`1.#ctor(System.AsyncCallback,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:bbv.Common.Async.AsyncResult`1"/> class.
+            </summary>
+            <param name="asyncCallback">The callback function that is called after the task has completed.</param>
+            <param name="state">A user-defined object that qualifies or contains information about an asynchronous
+            operation.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncResult`1.SetAsCompleted(`0,System.Boolean)">
+            <summary>
+            Sets the task to completed with a result.
+            </summary>
+            <param name="result">The return value of the task.</param>
+            <param name="completedSynchronously">true if the task run synchronously.</param>
+        </member>
+        <member name="M:bbv.Common.Async.AsyncResult`1.EndInvoke">
+            <summary>
+            Waits until the task has completed.
+            </summary>
+            <returns>The return value of the task.</returns>
+        </member>
+        <member name="T:bbv.Common.Async.IAsyncWorkerExtension">
+            <summary>
+            Provides extension points for <see cref="T:bbv.Common.Async.AsyncWorker"/>.
+            </summary>
+        </member>
+        <member name="M:bbv.Common.Async.IAsyncWorkerExtension.StartedExecution(bbv.Common.Async.AsyncWorker,System.ComponentModel.DoWorkEventHandler,System.Object)">
+            <summary>
+            Called when an operation is started.
+            </summary>
+            <param name="asyncWorker">The async worker.</param>
+            <param name="worker">The worker.</param>
+            <param name="argument">The argument.</param>
+        </member>
+        <member name="M:bbv.Common.Async.IAsyncWorkerExtension.CancellingExecution(bbv.Common.Async.AsyncWorker,System.ComponentModel.DoWorkEventHandler)">
+            <summary>
+            Called when an operation is cancelled.
+            </summary>
+            <param name="asyncWorker">The async worker.</param>
+            <param name="worker">The worker.</param>
+        </member>
+        <member name="M:bbv.Common.Async.IAsyncWorkerExtension.ReportProgress(bbv.Common.Async.AsyncWorker,System.ComponentModel.DoWorkEventHandler,System.ComponentModel.ProgressChangedEventHandler,System.Object)">
+            <summary>
+            Called when an operation reports progress.
+            </summary>
+            <param name="asyncWorker">The async worker.</param>
+            <param name="worker">The worker.</param>
+            <param name="progress">The progress.</param>
+            <param name="userState">State of the user.</param>
+        </member>
+        <member name="M:bbv.Common.Async.IAsyncWorkerExtension.CompletedExecution(bbv.Common.Async.AsyncWorker,System.ComponentModel.DoWorkEventHandler,System.ComponentModel.RunWorkerCompletedEventHandler,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            Called when an operation was completed.
+            </summary>
+            <param name="asyncWorker">The async worker.</param>
+            <param name="worker">The worker.</param>
+            <param name="completed">The completed handler.</param>
+            <param name="runWorkerCompletedEventArgs">The <see cref="T:System.ComponentModel.RunWorkerCompletedEventArgs"/> instance containing the event data.</param>
+        </member>
+    </members>
+</doc>

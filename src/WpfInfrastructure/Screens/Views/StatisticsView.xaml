@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="VP.FF.PT.Common.WpfInfrastructure.Screens.Views.StatisticsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:extensions="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Extensions"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Controls"
+             xmlns:styles="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Styles.Resources"
+             Width="378"
+             Height="495"
+             cal:Bind.AtDesignTime="True"
+             d:DesignHeight="500"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/ControlStyles.xaml" />
+                <ResourceDictionary Source="/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/IconStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+  <Border HorizontalAlignment="Stretch"
+          Background="{StaticResource Brush.View.Background}"
+          CornerRadius="0,19,0,0">
+      <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
+          <TextBlock Margin="0,15"
+                     HorizontalAlignment="Center"
+                     FontSize="{StaticResource FontSize.View.Title}"
+                     Foreground="{StaticResource Brush.View.Foreground.Title}"
+                     Text="THROUGHPUT" />
+          <Grid Margin="0,0,0,30">
+              <Viewbox Width="290">
+                  <ProgressBar Margin="5,0,0,5"
+                               Foreground="{StaticResource Brush.View.Foreground}"
+                               IsIndeterminate="{Binding IsPending}"
+                               Maximum="{Binding ThroughputMax}"
+                               Minimum="{Binding ThroughputMin}"
+                               Template="{StaticResource ProgressBar.Gauge.NeedleBar}"
+                               Value="{Binding Throughput}" />
+              </Viewbox>
+              <controls:GaugeLabel Width="215"
+                           Margin="0,-70,0,0"
+                           VerticalAlignment="Center"
+                           Foreground="{StaticResource Brush.View.Foreground}"
+                           Icon="{StaticResource Icon.Document}"
+                           IsIndeterminate="{Binding IsPending}"
+                           Maximum="{Binding ThroughputMax}"
+                           Minimum="{Binding ThroughputMin}"
+                           Tag="h"
+                           Template="{StaticResource ProgressBar.Gauge.Label}"
+                           Value="{Binding Throughput}" />
+          </Grid>
+          <styles:LabelWithUnit Margin="0,0,0,10"
+                                Content="{Binding OverallItemCount}"
+                                Template="{StaticResource Label.WithIconUnit}"
+                                Unit="{StaticResource Icon.Document}"
+                                Width="175"
+                                extensions:AttachedProperties.IconStyle="{StaticResource Icon.StatisticShift}" />
+          <styles:LabelWithUnit Margin="0,0,0,10"
+                                Content="{Binding UpTime}"
+                                Template="{StaticResource Label.WithTextUnit}"
+                                Unit="min"
+                                Width="175"
+                                extensions:AttachedProperties.IconStyle="{StaticResource Icon.StatisticShift.UpTime}" />
+          <styles:LabelWithUnit Margin="0,0,0,30"
+                                Content="{Binding DownTime}"
+                                Template="{StaticResource Label.WithTextUnit}"
+                                Unit="min"
+                                Width="175"
+                                extensions:AttachedProperties.IconStyle="{StaticResource Icon.StatisticShift.DownTime}" />
+          
+      </StackPanel>
+  </Border>
+</UserControl>

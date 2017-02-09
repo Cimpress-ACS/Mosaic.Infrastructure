@@ -1,0 +1,212 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <FontFamily x:Key="FontFamily.Standard">/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Fonts/#Miramonte</FontFamily>
+    <FontFamily x:Key="FontFamily.Icons">/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Fonts/#VistaPrintIcons</FontFamily>
+
+    <!--  GraphControl  -->
+    <system:Double
+        x:Key="FontSize.GraphControl.NodeLabel">
+        18
+    </system:Double>
+    <system:Double
+        x:Key="FontSize.GraphControl.CounterLabel">
+        14
+    </system:Double>
+    <system:Double
+        x:Key="FontSize.GraphControl.BubbleText">
+        12
+    </system:Double>
+
+    <!--  AccordionControl  -->
+    <system:Double
+        x:Key="FontSize.Accordion.Header">
+        22
+    </system:Double>
+    <system:Double
+        x:Key="FontSize.Accordion.Content">
+        20
+    </system:Double>
+    <system:Double
+        x:Key="FontSize.CommandButton.Label">
+        30
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Button.AttachedText">
+        16
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Message">
+        22
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Popup">
+        28
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Title">
+        56
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Subtitle">
+        36
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Logout.Title">
+        60
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Control">
+        36
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.AlarmSummary.LogView">
+        12
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.ListBoxItem">
+        26
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Label.ShirtCount">
+        49.19
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Label.Goal">
+        26.35
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Label.State">
+        30
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Tacho.Title">
+        29.56
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Tacho.Speed">
+        29.56
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Tacho.Unit">
+        21.25
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Icon.Standard">
+        68
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Icon.Multiline">
+        20
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.ControlStation.Label">
+        48
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.TreeViewItem">
+        26
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.TreeViewItem.Icon">
+        26
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.TreeViewItem.Substate">
+        21
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Titlebar.Date">
+        20
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Titlebar.Username">
+        20
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Titlebar.Version">
+        20
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.Titlebar.Role">
+        20
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.BreadcrumbBar">
+        22
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.View.Title">
+        26
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.StatisticsView.Label">
+        24
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.StatisticsView.Unit">
+        24
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.ModuleScreen.State.Label">
+        26
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.GenericPlcView.Info">
+        24
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.ShirtDetailView.Title">
+        72
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.ShirtDetailView.ShirtLabel">
+        50
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.DetailView.Content">
+        30
+    </system:Double>
+
+    <system:Double
+        x:Key="FontSize.DetailView.LogHistory">
+        20
+    </system:Double>
+
+</ResourceDictionary>

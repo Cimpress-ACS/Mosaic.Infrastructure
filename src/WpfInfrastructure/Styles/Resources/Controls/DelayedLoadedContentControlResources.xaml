@@ -1,0 +1,126 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Controls"
+                    xmlns:vsm ="clr-namespace:System.Windows;assembly=PresentationFramework"
+                    xmlns:ckstates="clr-namespace:Centigrade.Kit.StateMachine;assembly=Centigrade.Kit.StateMachine">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../FontResources.xaml" />
+        <ResourceDictionary Source="../BrushResources.xaml" />
+        <ResourceDictionary Source="GenericPageFeedbackDialogResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="TextBlock.Loading" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource FontSize.Title}" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Foreground.Date}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="DelayedLoaded.Default" TargetType="{x:Type controls:DelayedLoadedContentControl}">
+        <Setter Property="LoadingScreen">
+            <Setter.Value>
+                <TextBlock Style="{StaticResource TextBlock.Loading}"
+                    Text="Loading..." />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="DelayedLoaded" TargetType="{x:Type controls:DelayedLoadedContentControl}">
+        <Grid>
+
+            <vsm:VisualStateManager.VisualStateGroups>
+                <vsm:VisualStateGroup x:Name="VisualStateGroup">
+                    <vsm:VisualStateGroup.Transitions>
+                        <vsm:VisualTransition GeneratedDuration="0" />
+                    </vsm:VisualStateGroup.Transitions>
+                    <vsm:VisualState x:Name="Loading">
+                        <Storyboard RepeatBehavior="Forever">
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LoadingView" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LoadingView" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.5" />
+                                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentView" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ErrorView" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </vsm:VisualState>
+                    <vsm:VisualState x:Name="Content">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LoadingView" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LoadingView" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentView" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentView" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ErrorView" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </vsm:VisualState>
+                    <vsm:VisualState x:Name="Error">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ErrorView" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ErrorView" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </vsm:VisualState>
+                </vsm:VisualStateGroup>
+            </vsm:VisualStateManager.VisualStateGroups>
+            <ckstates:StateMapper
+                StateMachine="{Binding Path=States.CentigadeStateMachine, RelativeSource={RelativeSource TemplatedParent}}" 
+                Visibility="Collapsed">
+
+                <ckstates:ModelStateToVisualStateMapping ModelState="{Binding Path=States.Loading, RelativeSource={RelativeSource TemplatedParent}}"
+                                                         VisualStateName="Loading" />
+                <ckstates:ModelStateToVisualStateMapping ModelState="{Binding Path=States.Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                                         VisualStateName="Content" />
+                <ckstates:ModelStateToVisualStateMapping ModelState="{Binding Path=States.Error, RelativeSource={RelativeSource TemplatedParent}}"
+                                                         VisualStateName="Error" />
+            </ckstates:StateMapper>
+
+            <Grid 
+                x:Name="LoadingView"
+                Visibility="Visible">
+
+                <ContentPresenter Content="{TemplateBinding LoadingScreen}" />
+            </Grid>
+
+            <controls:FeedbackDialog 
+                x:Name="ErrorView" 
+                Style="{StaticResource GenericPage.Feedback.ErrorDialog}"
+                Template="{StaticResource GenericPage.Feedback.Dialog}"
+                TitleText="Error occured:">
+                <controls:FeedbackDialog.ContentSection>
+                    <TextBlock Text="{Binding Path=States.ErrorMessage, RelativeSource={RelativeSource TemplatedParent}}"/>
+                </controls:FeedbackDialog.ContentSection>
+                <controls:FeedbackDialog.ActionSection>
+                    <ContentPresenter Content="{TemplateBinding ErrorActionSection}" />
+                </controls:FeedbackDialog.ActionSection>
+            </controls:FeedbackDialog>
+
+            <ContentPresenter 
+                x:Name="ContentView" 
+                Visibility="Collapsed" />
+        </Grid>
+    </ControlTemplate>
+    
+</ResourceDictionary>

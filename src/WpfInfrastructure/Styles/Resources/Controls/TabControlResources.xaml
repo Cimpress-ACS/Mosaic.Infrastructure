@@ -1,0 +1,149 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d">
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary
+      Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/BrushResources.xaml" />
+    <ResourceDictionary
+      Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/FontResources.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+
+  <Style
+    TargetType="{x:Type TabControl}">
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="FontFamily" Value="{StaticResource FontFamily.Standard}" />
+    <Setter Property="FontSize" Value="{StaticResource FontSize.ListBoxItem}" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate
+          TargetType="{x:Type TabControl}">
+          <Grid
+            ClipToBounds="true"
+            KeyboardNavigation.TabNavigation="Local"
+            SnapsToDevicePixels="true">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition
+                x:Name="ColumnDefinition0" />
+              <ColumnDefinition
+                x:Name="ColumnDefinition1"
+                Width="0" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition
+                x:Name="RowDefinition0"
+                Height="Auto" />
+              <RowDefinition
+                x:Name="RowDefinition1"
+                Height="*" />
+            </Grid.RowDefinitions>
+            <TabPanel
+              x:Name="HeaderPanel"
+              Grid.Row="0"
+              Grid.Column="0"
+              Margin="0"
+              HorizontalAlignment="Left"
+              Panel.ZIndex="1"
+              Background="{StaticResource Brush.TabControl.Header.Background}"
+              IsItemsHost="true"
+              KeyboardNavigation.TabIndex="1" />
+            <Border
+              x:Name="ContentPanel"
+              Grid.Row="1"
+              Grid.Column="0"
+              KeyboardNavigation.DirectionalNavigation="Contained"
+              KeyboardNavigation.TabIndex="2"
+              KeyboardNavigation.TabNavigation="Local">
+              <ContentPresenter
+                x:Name="PART_SelectedContentHost"
+                Margin="{TemplateBinding Padding}"
+                ContentSource="SelectedContent"
+                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style
+    TargetType="{x:Type TabItem}">
+    <Setter Property="Foreground" Value="{StaticResource Brush.Label.Foreground.Standard}" />
+    <!--  <Setter Property="MinWidth" Value="292" />  -->
+    <Setter Property="Padding" Value="6,10,16,1" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="1,0,1,0" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate
+          TargetType="{x:Type TabItem}">
+          <Grid
+            SnapsToDevicePixels="true">
+            <Border
+              x:Name="Bd"
+              BorderBrush="{StaticResource Brush.TabControl.Header.Background}"
+              BorderThickness="{TemplateBinding BorderThickness}">
+              <Border
+                x:Name="InnerBd"
+                Margin="0,0,0,2"
+                Background="{StaticResource Brush.TabControl.TabItem.Background.Normal}"
+                BorderBrush="{StaticResource Brush.TabControl.TabItem.Background.Selected}"
+                BorderThickness="2"
+                Padding="{TemplateBinding Padding}">
+                <ContentPresenter
+                  x:Name="Content"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Center"
+                  ContentSource="Header"
+                  RecognizesAccessKey="True"
+                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                  TextBlock.TextAlignment="Right" />
+              </Border>
+            </Border>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsSelected" Value="true">
+              <Setter TargetName="Bd" Property="Background" Value="{StaticResource Brush.TabControl.TabItem.Background.Selected}" />
+              <Setter TargetName="InnerBd" Property="Background" Value="{StaticResource Brush.TabControl.TabItem.Background.Selected}" />
+              <Setter TargetName="InnerBd" Property="Margin" Value="0" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style
+    x:Key="Style.TabItem.LastItem"
+    BasedOn="{StaticResource {x:Type TabItem}}"
+    TargetType="{x:Type TabItem}">
+    <!--  only in AlarmSummaryBox's Maximized state: will be handled in visual state groups  -->
+    <!--
+      <Setter Property="Padding" Value="6,1,103,1" />
+      <Setter Property="MinWidth" Value="412" />
+    -->
+    <Setter Property="BorderThickness" Value="1,0,0,0" />
+  </Style>
+
+  <Style
+    x:Key="Style.TabItem.FirstItem"
+    BasedOn="{StaticResource {x:Type TabItem}}"
+    TargetType="{x:Type TabItem}">
+    <Setter Property="BorderThickness" Value="0,0,1,0" />
+  </Style>
+
+  <Style
+    x:Key="Style.TabItem.SingleItem"
+    BasedOn="{StaticResource {x:Type TabItem}}"
+    TargetType="{x:Type TabItem}">
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+</ResourceDictionary>

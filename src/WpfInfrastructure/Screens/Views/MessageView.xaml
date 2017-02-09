@@ -1,0 +1,289 @@
+﻿<UserControl x:Class="VP.FF.PT.Common.WpfInfrastructure.Screens.Views.MessageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ckstates="clr-namespace:Centigrade.Kit.StateMachine;assembly=Centigrade.Kit.StateMachine"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:extensions="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Extensions"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views1="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Screens.Views"
+             d:DesignHeight="600"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/Resources/BrushResources.xaml" />
+                <ResourceDictionary Source="../../Styles/Resources/FontResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid extensions:AttachedProperties.ScaleFactor="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views1:MessageView}}}">
+        <Grid.InputBindings>
+            <MouseBinding Command="{Binding RemoveMessageCommand}"
+                          CommandParameter="{Binding MessagesView.CurrentItem}"
+                          MouseAction="LeftClick" />
+        </Grid.InputBindings>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="NoMessageState">
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(UIElement.Opacity)">
+                            <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="ConsumableState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="messageGrid" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="InfoState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="messageGrid" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="infoBorder" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="WarningState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="messageGrid" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="warningBorder" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="ErrorState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="messageGrid" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="errorBorder" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <ckstates:StateMapper x:Name="cLoginStateMapper"
+                              StateMachine="{Binding StateMachine}"
+                              Visibility="Collapsed">
+            <ckstates:ModelStateToVisualStateMapping x:Name="NoMessageStateMapping"
+                                                     ModelState="{Binding NoMessageViewModelState,
+                                                                          Mode=OneWay}"
+                                                     VisualStateName="NoMessageState" />
+            <ckstates:ModelStateToVisualStateMapping x:Name="ConsumableStateMapping"
+                                                     ModelState="{Binding MessageViewModelState,
+                                                                          Mode=OneWay}"
+                                                     ModelStateTag="Consumable"
+                                                     VisualStateName="ConsumableState" />
+            <ckstates:ModelStateToVisualStateMapping x:Name="InfoStateMapping"
+                                                     ModelState="{Binding MessageViewModelState,
+                                                                          Mode=OneWay}"
+                                                     ModelStateTag="Info"
+                                                     VisualStateName="InfoState" />
+            <ckstates:ModelStateToVisualStateMapping x:Name="WarningStateMapping"
+                                                     ModelState="{Binding MessageViewModelState,
+                                                                          Mode=OneWay}"
+                                                     ModelStateTag="Warning"
+                                                     VisualStateName="WarningState" />
+            <ckstates:ModelStateToVisualStateMapping x:Name="ErrorStateMapping"
+                                                     ModelState="{Binding MessageViewModelState,
+                                                                          Mode=OneWay}"
+                                                     ModelStateTag="Error"
+                                                     VisualStateName="ErrorState" />
+        </ckstates:StateMapper>
+        <Grid x:Name="messageGrid" DataContext="{Binding MessagesView.CurrentItem}">
+            <Rectangle x:Name="sizeReferenceRect" Margin="90">
+                <!--
+                    <Rectangle.LayoutTransform>
+                    <TransformGroup>
+                    <ScaleTransform
+                    ScaleX="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:MessageView}}}"
+                    ScaleY="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:MessageView}}}" />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                    </TransformGroup>
+                    </Rectangle.LayoutTransform>
+                -->
+            </Rectangle>
+            <Border x:Name="border"
+                    Background="{StaticResource Brush.Button.Foreground.Normal}"
+                    Opacity="0.4">
+                <!--
+                    <Border.LayoutTransform>
+                    <TransformGroup>
+                    <ScaleTransform
+                    ScaleX="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:MessageView}}}"
+                    ScaleY="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:MessageView}}}" />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                    </TransformGroup>
+                    </Border.LayoutTransform>
+                -->
+            </Border>
+            <Border x:Name="errorBorder"
+                    MinHeight="220"
+                    MaxWidth="{Binding ActualWidth,
+                                       ElementName=messageGrid}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Background="{StaticResource Brush.Message.Error.Background}"
+                    Opacity="0.95"
+                    Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="25,6,10,0"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource FontFamily.Icons}"
+                               FontSize="86"
+                               Foreground="{StaticResource Brush.Button.Foreground.Normal}"
+                               Text="i">
+                        <TextBlock.LayoutTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views1:MessageView}}}" ScaleY="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views1:MessageView}}}" />
+                                <SkewTransform />
+                                <RotateTransform />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+                    <ScrollViewer MaxWidth="{Binding ActualWidth,
+                                                     ElementName=sizeReferenceRect}"
+                                  MaxHeight="{Binding ActualHeight,
+                                                      ElementName=sizeReferenceRect}"
+                                  Margin="0,45,45,45"
+                                  VerticalScrollBarVisibility="Auto">
+                        <TextBlock x:Name="errorTextBlock"
+                                   VerticalAlignment="Center"
+                                   FontFamily="{StaticResource FontFamily.Standard}"
+                                   FontSize="{StaticResource FontSize.Message}"
+                                   Foreground="{StaticResource Brush.Button.Foreground.Normal}"
+                                   Text="{Binding MessageText}"
+                                   TextWrapping="Wrap">
+                            <TextBlock.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views1:MessageView}}}" ScaleY="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views1:MessageView}}}" />
+                                    <SkewTransform />
+                                    <RotateTransform />
+                                    <TranslateTransform />
+                                </TransformGroup>
+                            </TextBlock.LayoutTransform>
+                        </TextBlock>
+                    </ScrollViewer>
+                </StackPanel>
+            </Border>
+            <Border x:Name="warningBorder"
+                    MinHeight="220"
+                    MaxWidth="{Binding ActualWidth,
+                                       ElementName=messageGrid}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Background="{StaticResource Brush.Message.Warning.Background}"
+                    Opacity="0.95"
+                    Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="25,6,10,0"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource FontFamily.Icons}"
+                               FontSize="86"
+                               Foreground="{StaticResource Brush.Label.Foreground.Standard}"
+                               Text="i">
+                        <TextBlock.LayoutTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views1:MessageView}}}" ScaleY="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views1:MessageView}}}" />
+                                <SkewTransform />
+                                <RotateTransform />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+                    <ScrollViewer MaxWidth="{Binding ActualWidth,
+                                                     ElementName=sizeReferenceRect}"
+                                  MaxHeight="{Binding ActualHeight,
+                                                      ElementName=sizeReferenceRect}"
+                                  Margin="0,45,45,45"
+                                  VerticalScrollBarVisibility="Auto">
+                        <TextBlock x:Name="warningTextBlock"
+                                   VerticalAlignment="Center"
+                                   FontFamily="{StaticResource FontFamily.Standard}"
+                                   FontSize="{StaticResource FontSize.Message}"
+                                   Foreground="{StaticResource Brush.Label.Foreground.Standard}"
+                                   Text="{Binding MessageText}"
+                                   TextWrapping="Wrap">
+                            <TextBlock.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views1:MessageView}}}" ScaleY="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views1:MessageView}}}" />
+                                    <SkewTransform />
+                                    <RotateTransform />
+                                    <TranslateTransform />
+                                </TransformGroup>
+                            </TextBlock.LayoutTransform>
+                        </TextBlock>
+                    </ScrollViewer>
+                </StackPanel>
+            </Border>
+            <Border x:Name="infoBorder"
+                    MinHeight="220"
+                    MaxWidth="{Binding ActualWidth,
+                                       ElementName=messageGrid}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Background="{StaticResource Brush.Message.Info.Background}"
+                    Opacity="0.95"
+                    Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="25,6,10,0"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource FontFamily.Icons}"
+                               FontSize="86"
+                               Foreground="{StaticResource Brush.Label.Foreground.Standard}"
+                               Text="i">
+                        <TextBlock.LayoutTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views1:MessageView}}}" ScaleY="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views1:MessageView}}}" />
+                                <SkewTransform />
+                                <RotateTransform />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+                    <ScrollViewer MaxWidth="{Binding ActualWidth,
+                                                     ElementName=sizeReferenceRect}"
+                                  MaxHeight="{Binding ActualHeight,
+                                                      ElementName=sizeReferenceRect}"
+                                  Margin="0,45,45,45"
+                                  VerticalScrollBarVisibility="Auto">
+                        <TextBlock x:Name="infoTextBlock"
+                                   VerticalAlignment="Center"
+                                   FontFamily="{StaticResource FontFamily.Standard}"
+                                   FontSize="{StaticResource FontSize.Message}"
+                                   Foreground="{StaticResource Brush.Label.Foreground.Standard}"
+                                   Text="{Binding MessageText}"
+                                   TextWrapping="Wrap">
+                            <TextBlock.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views1:MessageView}}}" ScaleY="{Binding (extensions:AttachedProperties.ScaleFactor), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views1:MessageView}}}" />
+                                    <SkewTransform />
+                                    <RotateTransform />
+                                    <TranslateTransform />
+                                </TransformGroup>
+                            </TextBlock.LayoutTransform>
+                        </TextBlock>
+                    </ScrollViewer>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

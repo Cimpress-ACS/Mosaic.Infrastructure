@@ -1,0 +1,1169 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Controls"
+                    xmlns:converters="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Converters;assembly=VP.FF.PT.Common.WpfInfrastructure"
+                    xmlns:extensions="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Extensions"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../BrushResources.xaml" />
+        <ResourceDictionary Source="../FontResources.xaml" />
+        <ResourceDictionary Source="../IconResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="BorderBrush" Value="{StaticResource Brush.Button.Border.Normal}" />
+        <Setter Property="Background" Value="{StaticResource Brush.Button.Background.Normal}" />
+        <Setter Property="MinHeight" Value="100" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="MinWidth" Value="236" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily.Standard}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize.Icon.Standard}" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Button.Foreground.Normal}" />
+        <Setter Property="Padding" Value="4,0,50,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Margin="0,0,0,3">
+                        <Border x:Name="Shadow"
+                                Margin="0,0,0,-3"
+                                Background="{StaticResource Brush.Control.Background.Shadow}"
+                                CornerRadius="50" />
+                        <Border x:Name="OuterBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="50">
+                            <Border x:Name="InnerBorder"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="3"
+                                    CornerRadius="48">
+                                <Grid x:Name="grid" Margin="13,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock MinWidth="24"
+                                               Margin="0,1,0,0"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontFamily="{StaticResource FontFamily.Icons}"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               Foreground="{StaticResource Brush.Button.Foreground.Normal}"
+                                               Text="{Binding (extensions:AttachedProperties.Icon),
+                                                              RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <ContentPresenter Grid.Column="1"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      RecognizesAccessKey="True"
+                                                      TextBlock.FontSize="{StaticResource FontSize.Control}" />
+                                </Grid>
+                            </Border>
+                        </Border>
+                        <TextBlock Grid.ColumnSpan="2"
+                                   Margin="0,0,0,5"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Bottom"
+                                   FontFamily="{StaticResource FontFamily.Standard}"
+                                   FontSize="{StaticResource FontSize.Button.AttachedText}"
+                                   Foreground="{StaticResource Brush.Button.AttachedTextProperty}"
+                                   Text="{Binding (extensions:AttachedProperties.AttachedText),
+                                                  RelativeSource={RelativeSource TemplatedParent}}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true">
+                            <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource Brush.Button.Border.Normal}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Background" Value="{StaticResource Brush.Button.Background.Pressed}" />
+                <Setter Property="BorderBrush" Value="{StaticResource Brush.Button.Border.Pressed}" />
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style x:Key="MultilineButton"
+           BasedOn="{StaticResource {x:Type Button}}"
+           TargetType="{x:Type Button}">
+        <Setter Property="FontSize" Value="{StaticResource FontSize.Icon.Multiline}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Margin="0,0,0,3">
+                        <Border x:Name="Shadow"
+                                Margin="0,0,0,-3"
+                                Background="{StaticResource Brush.Control.Background.Shadow}"
+                                CornerRadius="50" />
+                        <Border x:Name="OuterBorder"
+                                Background="{StaticResource Brush.Button.Background.Normal}"
+                                CornerRadius="50">
+                            <Border x:Name="InnerBorder"
+                                    BorderBrush="{StaticResource Brush.Button.Border.Normal}"
+                                    BorderThickness="3"
+                                    CornerRadius="48">
+                                <Grid x:Name="grid" Margin="13,0,0,0">
+                                    <TextBlock MinWidth="24"
+                                               Margin="{TemplateBinding Padding}"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               Foreground="{StaticResource Brush.Button.Foreground.Normal}"
+                                               Text="{TemplateBinding Content}"
+                                               TextWrapping="Wrap" />
+                                </Grid>
+                            </Border>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true">
+                            <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource Brush.Button.Border.Normal}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="OuterBorder" Property="Background" Value="{StaticResource Brush.Button.Background.Pressed}" />
+                            <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource Brush.Button.Border.Pressed}" />
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="true" />
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ArrowButtonStyle"
+           BasedOn="{StaticResource {x:Type Button}}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Height" Value="100" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="Grid" Margin="0,0,0,3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Path x:Name="ArrowShadow"
+                              Grid.Column="1"
+                              Margin="0,4,0,-4"
+                              Data="M53.666663,44.502 C52.166663,40.002 19.169663,8.093 19.169663,8.093 19.169663,8.093 12,1.5 1.5,1.5 1.5,1.5 1.5,95.5 1.5,95.5 12,95.5 19.166663,88.912 19.166663,88.912 19.166663,88.912 52.166663,57.002 53.666663,52.502 53.666663,52.502 54.666663,51.002 54.666663,48.502 54.666663,46.002 53.666663,44.502 53.666663,44.502"
+                              Fill="{StaticResource Brush.Control.Background.Shadow}"
+                              Stretch="Uniform" />
+                        <Path x:Name="Arrow"
+                              Grid.Column="1"
+                              Margin="-5,0,0,0"
+                              Data="M53.666663,44.502 C52.166663,40.002 19.169663,8.093 19.169663,8.093 19.169663,8.093 12,1.5 1.5,1.5 1.5,1.5 1.5,95.5 1.5,95.5 12,95.5 19.166663,88.912 19.166663,88.912 19.166663,88.912 52.166663,57.002 53.666663,52.502 53.666663,52.502 54.666663,51.002 54.666663,48.502 54.666663,46.002 53.666663,44.502 53.666663,44.502"
+                              Fill="{StaticResource Brush.Button.Background.Normal}"
+                              Stretch="Uniform"
+                              Stroke="{StaticResource Brush.Button.Foreground.Normal}"
+                              StrokeThickness="3" />
+                        <Border Margin="0,0,0,-3"
+                                Background="{StaticResource Brush.Control.Background.Shadow}"
+                                CornerRadius="50,0,0,50" />
+                        <Border x:Name="Border"
+                                Background="{StaticResource Brush.Button.Background.Normal}"
+                                BorderBrush="{StaticResource Brush.Button.Foreground.Normal}"
+                                BorderThickness="3,3,0,3"
+                                CornerRadius="50,0,0,50" />
+                        <Grid Margin="13,0,-10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Margin="0,1,0,0"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource FontFamily.Icons}"
+                                       FontSize="{TemplateBinding Foreground}"
+                                       Foreground="{StaticResource Brush.Button.Foreground.Normal}"
+                                       Text="{Binding (extensions:AttachedProperties.Icon),
+                                                      RelativeSource={RelativeSource TemplatedParent}}" />
+                            <ContentPresenter Grid.Column="1"
+                                              Margin="19,1,0,4"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              RecognizesAccessKey="True"
+                                              TextBlock.FontSize="{StaticResource FontSize.Control}" />
+                        </Grid>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true" />
+
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="Arrow" Property="Fill" Value="{StaticResource Brush.Button.Background.Pressed}" />
+                            <Setter TargetName="Arrow" Property="Stroke" Value="{StaticResource Brush.Button.Border.Pressed}" />
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource Brush.Button.Background.Pressed}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource Brush.Button.Border.Pressed}" />
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="true" />
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.5" />
+
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  AccordionControl  -->
+    <Style x:Key="Button.Command" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Height" Value="60" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily.Standard}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize.CommandButton.Label}" />
+        <Setter Property="Background" Value="{StaticResource Brush.CommandButton.Background.Normal}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Margin="0,0,0,3">
+                        <Border x:Name="Shadow"
+                                Margin="0,0,0,-3"
+                                Background="{StaticResource Brush.Control.Background.Shadow}"
+                                CornerRadius="20" />
+                        <Border x:Name="OuterBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="22">
+                            <Border x:Name="InnerBorder"
+                                    BorderBrush="{TemplateBinding Foreground}"
+                                    BorderThickness="3"
+                                    CornerRadius="20">
+                                <Grid>
+                                    <ContentPresenter Margin="10"
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
+                                                      TextBlock.FontFamily="{StaticResource FontFamily.Standard}"
+                                                      TextBlock.FontSize="{StaticResource FontSize.Accordion.Content}" />
+                                </Grid>
+                            </Border>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true">
+                            <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource Brush.Button.Border.Normal}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="OuterBorder" Property="Background" Value="{StaticResource Brush.Button.Background.Pressed}" />
+                            <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource Brush.Button.Border.Pressed}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.ToolBar" TargetType="{x:Type Button}">
+        <Setter Property="MinHeight" Value="44" />
+        <Setter Property="MinWidth" Value="44" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize.Icon.Standard}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Background="Transparent">
+                        <ContentPresenter VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true" />
+
+                        <Trigger Property="IsPressed" Value="true" />
+
+                        <Trigger Property="IsEnabled" Value="true" />
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.FullScreen" TargetType="{x:Type ButtonBase}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Grid HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          Background="Transparent">
+                        <ContentControl VerticalAlignment="Center" Style="{StaticResource Icon.FullScreen}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true" />
+                        <Trigger Property="IsPressed" Value="true" />
+                        <Trigger Property="IsEnabled" Value="true" />
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <StreamGeometry x:Key="StreamGeometry.Ellipse">F1M35.8,17.9C35.8,27.841 27.841,35.8 17.9,35.8 7.959,35.8 0,27.841 0,17.9 0,7.959 7.959,0 17.9,0 27.841,0 35.8,7.959 35.8,17.9</StreamGeometry>
+
+    <system:Double x:Key="Double.Opacity.Shadow">0.1</system:Double>
+
+    <Style x:Key="Button.Round.Base" TargetType="{x:Type ButtonBase}">
+        <Setter Property="Width" Value="132" />
+        <Setter Property="Height" Value="134" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily.Standard}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize.Control}" />
+        <Setter Property="Background" Value="{StaticResource Brush.Button.Background.Normal}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="130*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <Path Grid.Row="1"
+                              Grid.RowSpan="2"
+                              Data="{StaticResource StreamGeometry.Ellipse}"
+                              Fill="Black"
+                              Opacity="{StaticResource Double.Opacity.Shadow}"
+                              Stretch="Uniform" />
+                        <Path x:Name="Border"
+                              Grid.Row="0"
+                              Grid.RowSpan="2"
+                              Data="{StaticResource StreamGeometry.Ellipse}"
+                              Fill="{TemplateBinding Foreground}"
+                              Stretch="Uniform" />
+                        <Grid Grid.Row="0" Grid.RowSpan="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="4*" />
+                                <RowDefinition Height="124*" />
+                                <RowDefinition Height="4*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition Width="124*" />
+                                <ColumnDefinition Width="4*" />
+                            </Grid.ColumnDefinitions>
+                            <Path x:Name="Ellipse"
+                                  Grid.Row="1"
+                                  Grid.Column="1"
+                                  Data="{StaticResource StreamGeometry.Ellipse}"
+                                  Fill="{TemplateBinding Background}"
+                                  Stretch="Uniform" />
+                        </Grid>
+                        <ContentPresenter Grid.Row="0"
+                                          Grid.RowSpan="3"
+                                          Grid.Column="0"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.Round.Standard"
+           BasedOn="{StaticResource Button.Round.Base}"
+           TargetType="{x:Type ButtonBase}">
+        <Style.Triggers>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Background" Value="{StaticResource Brush.Button.Background.Pressed}" />
+                <Setter Property="Foreground" Value="{StaticResource Brush.Button.Border.Pressed}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Button.Round.NoBorder" TargetType="{x:Type ButtonBase}">
+        <Setter Property="Width" Value="132" />
+        <Setter Property="Height" Value="134" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily.Standard}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize.Control}" />
+        <Setter Property="Background" Value="{StaticResource Brush.Button.Background.Normal}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="130*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Grid.RowSpan="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="4*" />
+                                <RowDefinition Height="124*" />
+                                <RowDefinition Height="4*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition Width="124*" />
+                                <ColumnDefinition Width="4*" />
+                            </Grid.ColumnDefinitions>
+                            <Path x:Name="Ellipse"
+                                  Grid.Row="1"
+                                  Grid.Column="1"
+                                  Data="{StaticResource StreamGeometry.Ellipse}"
+                                  Fill="{TemplateBinding Background}"
+                                  Stretch="Uniform" />
+                        </Grid>
+                        <ContentPresenter Grid.Row="0"
+                                          Grid.RowSpan="3"
+                                          Grid.Column="0"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{StaticResource Brush.Button.Background.Pressed}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ToggleButton.Round.Standard"
+           BasedOn="{StaticResource Button.Round.Standard}"
+           TargetType="{x:Type ToggleButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="130*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <Path Grid.Row="1"
+                              Grid.RowSpan="2"
+                              Data="{StaticResource StreamGeometry.Ellipse}"
+                              Fill="Black"
+                              Opacity="{StaticResource Double.Opacity.Shadow}"
+                              Stretch="Uniform" />
+                        <Path x:Name="Border"
+                              Grid.Row="0"
+                              Grid.RowSpan="2"
+                              Data="{StaticResource StreamGeometry.Ellipse}"
+                              Fill="{TemplateBinding Foreground}"
+                              Stretch="Uniform" />
+                        <Grid Grid.Row="0" Grid.RowSpan="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="4*" />
+                                <RowDefinition Height="124*" />
+                                <RowDefinition Height="4*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition Width="124*" />
+                                <ColumnDefinition Width="4*" />
+                            </Grid.ColumnDefinitions>
+                            <Path x:Name="Ellipse"
+                                  Grid.Row="1"
+                                  Grid.Column="1"
+                                  Data="{StaticResource StreamGeometry.Ellipse}"
+                                  Fill="{TemplateBinding Background}"
+                                  Stretch="Uniform" />
+                        </Grid>
+                        <ContentPresenter Grid.Row="0"
+                                          Grid.RowSpan="3"
+                                          Grid.Column="0"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{StaticResource Brush.Button.Background.Pressed}" />
+                            <Setter TargetName="Border" Property="Fill" Value="{StaticResource Brush.Button.Border.Pressed}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{StaticResource Brush.Button.Background.Checked}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.Reset"
+           BasedOn="{StaticResource Button.Round.Standard}"
+           TargetType="{x:Type Button}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25*" />
+                            <RowDefinition Height="80*" />
+                            <RowDefinition Height="27*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="11*" />
+                            <ColumnDefinition Width="92*" />
+                            <ColumnDefinition Width="27*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Margin="-9,0,0,0"
+                                        Style="{StaticResource Icon.Reset}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.Close"
+           BasedOn="{StaticResource Button.Round.NoBorder}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#FF425B71" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25*" />
+                            <RowDefinition Height="80*" />
+                            <RowDefinition Height="27*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="11*" />
+                            <ColumnDefinition Width="92*" />
+                            <ColumnDefinition Width="27*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Margin="5"
+                                        Style="{StaticResource Icon.Close}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.Reload"
+           BasedOn="{StaticResource Button.Round.Standard}"
+           TargetType="{x:Type Button}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25*" />
+                            <RowDefinition Height="80*" />
+                            <RowDefinition Height="25*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="12*" />
+                            <ColumnDefinition Width="107*" />
+                            <ColumnDefinition Width="12*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Style="{StaticResource Icon.Reload}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.Save"
+           BasedOn="{StaticResource Button.Round.Standard}"
+           TargetType="{x:Type Button}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="31*" />
+                            <RowDefinition Height="67*" />
+                            <RowDefinition Height="31*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="31*" />
+                            <ColumnDefinition Width="67*" />
+                            <ColumnDefinition Width="31*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Style="{StaticResource Icon.Save}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.Stop"
+           BasedOn="{StaticResource Button.Round.Standard}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="90" />
+        <Setter Property="Height" Value="92" />
+        <Setter Property="Background" Value="{StaticResource Brush.Red.DownTime}" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24*" />
+                            <RowDefinition Height="43*" />
+                            <RowDefinition Height="26*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="28*" />
+                            <ColumnDefinition Width="42*" />
+                            <ColumnDefinition Width="20*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Style="{StaticResource Icon.Stop}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.Start"
+           BasedOn="{StaticResource Button.Round.Standard}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="90" />
+        <Setter Property="Height" Value="92" />
+        <Setter Property="Background" Value="{StaticResource Brush.Green.UpTime}" />
+
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24*" />
+                            <RowDefinition Height="43*" />
+                            <RowDefinition Height="26*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="28*" />
+                            <ColumnDefinition Width="42*" />
+                            <ColumnDefinition Width="20*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl x:Name="content"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Style="{StaticResource Icon.Start}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.PartialStart"
+           BasedOn="{StaticResource Button.Round.Standard}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="90" />
+        <Setter Property="Height" Value="92" />
+        <Setter Property="Background" Value="{StaticResource Brush.Green.UpTime}" />
+
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24*" />
+                            <RowDefinition Height="43*" />
+                            <RowDefinition Height="26*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="28*" />
+                            <ColumnDefinition Width="42*" />
+                            <ColumnDefinition Width="20*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl x:Name="content"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Style="{StaticResource Icon.PartialStart}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.Pause"
+           BasedOn="{StaticResource Button.Round.Standard}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="90" />
+        <Setter Property="Height" Value="92" />
+        <Setter Property="Background" Value="{StaticResource Brush.Orange.WarnSign}" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24*" />
+                            <RowDefinition Height="43*" />
+                            <RowDefinition Height="26*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="28*" />
+                            <ColumnDefinition Width="42*" />
+                            <ColumnDefinition Width="20*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Style="{StaticResource Icon.Pause}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.PauseBusy"
+           BasedOn="{StaticResource Button.Round.Standard}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="90" />
+        <Setter Property="Height" Value="92" />
+        <Setter Property="Foreground" Value="Orange" />
+        <Setter Property="Background" Value="{StaticResource Brush.Orange.WarnSign}" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24*" />
+                            <RowDefinition Height="43*" />
+                            <RowDefinition Height="26*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="28*" />
+                            <ColumnDefinition Width="42*" />
+                            <ColumnDefinition Width="20*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Style="{StaticResource Icon.Pause}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.StartBusy"
+           BasedOn="{StaticResource Button.Round.Standard}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="90" />
+        <Setter Property="Height" Value="92" />
+        <Setter Property="Foreground" Value="Orange" />
+        <Setter Property="Background" Value="{StaticResource Brush.Green.UpTime}" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24*" />
+                            <RowDefinition Height="43*" />
+                            <RowDefinition Height="26*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="28*" />
+                            <ColumnDefinition Width="42*" />
+                            <ColumnDefinition Width="20*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Style="{StaticResource Icon.Start}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.StopBusy"
+           BasedOn="{StaticResource Button.Round.Standard}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="90" />
+        <Setter Property="Height" Value="92" />
+        <Setter Property="Foreground" Value="Orange" />
+        <Setter Property="Background" Value="{StaticResource Brush.Red.DownTime}" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24*" />
+                            <RowDefinition Height="43*" />
+                            <RowDefinition Height="26*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="28*" />
+                            <ColumnDefinition Width="42*" />
+                            <ColumnDefinition Width="20*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Style="{StaticResource Icon.Stop}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.KeyPad" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily.Standard}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize.Control}" />
+        <Setter Property="Background" Value="{StaticResource Brush.Button.Background.Normal}" />
+        <Setter Property="Width" Value="67" />
+        <Setter Property="Height" Value="67" />
+        <Setter Property="Margin" Value="4" />
+    </Style>
+
+    <Style x:Key="Button.KeyPadLarge" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily.Standard}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize.Control}" />
+        <Setter Property="Background" Value="{StaticResource Brush.Button.Background.Normal}" />
+        <Setter Property="Width" Value="142" />
+        <Setter Property="Height" Value="67" />
+        <Setter Property="Margin" Value="4" />
+    </Style>
+
+    <Style x:Key="Button.KeyPadVertical" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily.Standard}" />
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="Background" Value="{StaticResource Brush.Button.Background.Normal}" />
+        <Setter Property="Width" Value="67" />
+        <Setter Property="Height" Value="142" />
+        <Setter Property="Margin" Value="4" />
+    </Style>
+
+    <Style x:Key="Button.Import"
+           BasedOn="{StaticResource Button.Round.Standard}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="90" />
+        <Setter Property="Height" Value="92" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25*" />
+                            <RowDefinition Height="80*" />
+                            <RowDefinition Height="25*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*" />
+                            <ColumnDefinition Width="37*" />
+                            <ColumnDefinition Width="26*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Style="{StaticResource Icon.Import}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.Export"
+           BasedOn="{StaticResource Button.Round.Standard}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="90" />
+        <Setter Property="Height" Value="92" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25*" />
+                            <RowDefinition Height="80*" />
+                            <RowDefinition Height="25*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*" />
+                            <ColumnDefinition Width="37*" />
+                            <ColumnDefinition Width="26*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Style="{StaticResource Icon.Export}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.Automatic"
+           BasedOn="{StaticResource Button.Round.Standard}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="90" />
+        <Setter Property="Height" Value="92" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20*" />
+                            <RowDefinition Height="48*" />
+                            <RowDefinition Height="19*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="21*" />
+                            <ColumnDefinition Width="46*" />
+                            <ColumnDefinition Width="19*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Style="{StaticResource Icon.Automatic}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.AcceptAlerts"
+           BasedOn="{StaticResource Button.Round.Standard}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="45" />
+        <Setter Property="Height" Value="45" />
+        <Setter Property="Background" Value="{StaticResource Brush.Background.AcceptAlerts}" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25*" />
+                            <RowDefinition Height="80*" />
+                            <RowDefinition Height="25*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="12*" />
+                            <ColumnDefinition Width="107*" />
+                            <ColumnDefinition Width="12*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Style="{StaticResource Icon.AcceptAlerts}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ToggleButton.Forcing"
+           BasedOn="{StaticResource Button.Round.Base}"
+           TargetType="{x:Type ToggleButton}">
+        <Setter Property="ClickMode" Value="Press" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Width" Value="130" />
+        <Setter Property="Height" Value="132" />
+        <Setter Property="Background" Value="{StaticResource Brush.Forcing.Primary}" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20*" />
+                            <RowDefinition Height="82*" />
+                            <RowDefinition Height="20*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="38*" />
+                            <ColumnDefinition Width="65*" />
+                            <ColumnDefinition Width="19*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Style="{StaticResource Icon.StartForcing}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource Brush.Forcing.Primary}" />
+                <Setter Property="Background" Value="{StaticResource Brush.Forcing.Secondary}" />
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="23*" />
+                                    <RowDefinition Height="83*" />
+                                    <RowDefinition Height="26*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30*" />
+                                    <ColumnDefinition Width="70*" />
+                                    <ColumnDefinition Width="30*" />
+                                </Grid.ColumnDefinitions>
+                                <ContentControl Grid.Row="1"
+                                                Grid.Column="1"
+                                                Width="Auto"
+                                                Height="Auto"
+                                                Foreground="{StaticResource Brush.Forcing.Primary}"
+                                                Style="{StaticResource Icon.StopForcing}" />
+                            </Grid>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ToggleButton.ShirtStream"
+           BasedOn="{StaticResource ToggleButton.Round.Standard}"
+           TargetType="{x:Type ToggleButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25*" />
+                            <RowDefinition Height="80*" />
+                            <RowDefinition Height="25*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="12*" />
+                            <ColumnDefinition Width="107*" />
+                            <ColumnDefinition Width="12*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Margin="-10"
+                                        Style="{StaticResource Icon.ShirtStream}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.PaperStream"
+           BasedOn="{StaticResource Button.Round.Standard}"
+           TargetType="{x:Type Button}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25*" />
+                            <RowDefinition Height="80*" />
+                            <RowDefinition Height="25*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="12*" />
+                            <ColumnDefinition Width="107*" />
+                            <ColumnDefinition Width="12*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Style="{StaticResource Icon.PaperStream}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ToggleButton.PaperStream"
+           BasedOn="{StaticResource ToggleButton.Round.Standard}"
+           TargetType="{x:Type ToggleButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25*" />
+                            <RowDefinition Height="80*" />
+                            <RowDefinition Height="25*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="12*" />
+                            <ColumnDefinition Width="107*" />
+                            <ColumnDefinition Width="12*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="Auto"
+                                        Height="Auto"
+                                        Margin="-5"
+                                        Style="{StaticResource Icon.PaperStream}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Button.ControlModule" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Margin="{TemplateBinding Margin}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter Grid.Column="0" />
+                        <Rectangle Grid.Column="1"
+                                   Height="7"
+                                   MinWidth="27"
+                                   Fill="Black"
+                                   Opacity="{StaticResource Double.Opacity.Shadow}" />
+                        <Rectangle Grid.Column="1"
+                                   Height="5"
+                                   MinWidth="27"
+                                   Fill="{StaticResource Brush.Button.Border.Normal}" />
+                        <Button Grid.Column="2" Style="{TemplateBinding controls:ControlModuleButton.ModuleButtonStyle}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

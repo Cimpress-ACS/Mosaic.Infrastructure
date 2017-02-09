@@ -1,0 +1,54 @@
+﻿<UserControl
+    x:Class="VP.FF.PT.Common.WpfInfrastructure.Screens.Views.MasterTreeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Behaviors"
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Screens.ViewModels"
+    cal:Bind.AtDesignTime="True"
+    d:DataContext="{d:DesignInstance Type=viewModels:GenericPlcViewModel, IsDesignTimeCreatable=True}"
+    d:DesignHeight="1000"
+    d:DesignWidth="500"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="../../Styles/SaberStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition
+                Height="Auto" />
+        </Grid.RowDefinitions>
+        <TreeView
+            x:Name="TreeView"
+            Grid.Row="0"
+            MinWidth="406"
+            ItemsSource="{Binding MasterTree}"
+            Style="{StaticResource Style.MasterTreeView}">
+
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate
+                    ItemsSource="{Binding Childs}">
+                    <TextBlock
+                        Text="{Binding DisplayName}" />
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+
+            <i:Interaction.Behaviors>
+                <behaviors:BindableSelectedItemBehavior
+                    SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <behaviors:PathToRootBehavior />
+                <behaviors:DisableDoubleClickBehavior />
+            </i:Interaction.Behaviors>
+        </TreeView>
+    </Grid>
+</UserControl>

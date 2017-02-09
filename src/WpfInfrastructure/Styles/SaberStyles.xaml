@@ -1,0 +1,81 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/ValueResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/BrushResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/FontResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/IconResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/ConverterResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/ButtonResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/ScrollBarResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/ProgressBarResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/TextBoxResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/ComboBoxResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/TreeViewResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/TabControlResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/AlarmSummaryResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/GenericPlcResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/ListBoxResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/PlatformItemListBoxResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/TextBlockResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/ListViewResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/AccordionResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/SmartScrollViewerResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/GenericPageFeedbackDialogResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/DelayedLoadedContentControlResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/RadioButtonResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/CheckBoxResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/SliderResources.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/LabelResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style
+        x:Key="Application.Background.Watermark"
+        TargetType="Path">
+        <Setter Property="Stretch" Value="Uniform" />
+        <Setter Property="Data" Value="M614.408,439.298C576.043,219.593 412.311,501.127 219.628,418.787 112.764,373.12 132.7,295.114 164.964,240.759 164.157,240.468 163.492,239.975 163.019,239.206 148.61,215.768 103.575,239.771 103.575,239.771 103.575,239.771 96.958,202.774 76.584,183.818 110.041,167.844 168.582,167.39 211.788,180.405 211.957,180.239 212.073,180.125 212.073,180.125L213.556,180.94C223.94,184.188 233.398,188.221 241.329,193.027 240.458,193.602 239.593,194.183 238.727,194.763L241.032,196.029C235.544,204.451 237.436,216.135 247.12,226.675 262.003,242.891 287.764,251.266 305.968,246.836 311.854,245.385 316.38,242.663 319.415,239.076L333.558,246.843C333.83,246.624 333.978,246.505 333.978,246.505 333.978,246.505 334.81,247.271 336.44,248.426L346.628,254.021C360.606,259.99 386.209,265.128 423.657,250.335 415.092,277.56 391.255,315.422 391.255,315.422 391.255,315.422 353.564,328.375 313.942,313.83 301.816,344.496 325.863,382.115 429.106,338.452 632.367,251.877 614.975,439.249 614.408,439.298 M253.056,489.413C253.056,478.298 262.066,469.287 273.181,469.287 284.295,469.287 293.306,478.298 293.306,489.413 293.306,495.988 290.137,501.81 285.26,505.482 335.346,508.103 379.177,525.825 406.905,547.93 318.49,577.999 224.778,578.521 136.181,549.485 164.013,526.478 209.235,507.865 261.04,505.436 256.197,501.761 253.056,495.961 253.056,489.413 M500.898,598.824C438.289,646.505,352.987,663.644,352.987,663.644L353.312,662.461C329.401,668.48 301.847,671.926 272.487,671.926 217.429,671.926 168.676,659.847 138.568,641.278 93.404,625.91 45.761,582.11 36.017,532.753 22.939,466.509 54.487,405.43 106.481,396.327 152.634,388.247 184.355,441.877 157.973,490.3 150.015,486.309 140.806,484.215 134.493,480.443 125.178,474.878 119.161,486.277 125.762,474.347 153.016,425.082 104.993,411.558 80.394,442.656 57.437,471.679 57.089,518.805 78.099,549.38 86.798,562.04 99.82,571.446 113.169,575.857 116.672,569.542 121.578,563.235 127.704,557.132 224.116,590.294 326.793,588.867 422.665,552.843 444.653,553.159 472.347,550.675 495.338,539.443 576.117,499.979 585.578,453.053 585.578,453.053 585.578,453.053 581.032,451.813 605.382,451.813 619.023,451.813 625.022,453.053 625.022,453.053 625.022,453.053 593.777,528.09 500.898,598.824 M158.656,695.308C159.532,686.238 168.234,677.619 182.326,670.796 208.69,678.34 239.522,682.701 272.487,682.701 304.837,682.701 335.12,678.485 361.155,671.198 374.75,677.95 383.114,686.238 383.972,695.308z M293.642,0C266.03,57.523,95.385,87.142,0,207.167L0,715.461 655,715.461 655,403.077C655,109.637,332.337,80.615,293.642,0" />
+        <Setter Property="Opacity" Value="0.08" />
+        <Setter Property="Fill">
+            <Setter.Value>
+                <RadialGradientBrush Center="0.443,0.769" GradientOrigin="0.443,0.769" RadiusX="0.594" RadiusY="0.783">
+                    <GradientStop Offset="0" Color="#FF354A5B" />
+                    <GradientStop Offset="0.61" Color="#E9354A5B" />
+                    <GradientStop Offset="0.77" Color="#BA354A5B" />
+                    <GradientStop Offset="0.877" Color="#7B354A5B" />
+                    <GradientStop Offset="0.96" Color="#2F354A5B" />
+                    <GradientStop Offset="1" Color="#00354A5B" />
+                    <GradientStop Offset="1" Color="#00354A5B" />
+                </RadialGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

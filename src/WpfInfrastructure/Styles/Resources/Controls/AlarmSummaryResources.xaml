@@ -1,0 +1,258 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary
+      Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/BrushResources.xaml" />
+    <ResourceDictionary
+      Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/FontResources.xaml" />
+    <ResourceDictionary
+      Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/IconResources.xaml" />
+    <ResourceDictionary
+      Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/ScrollBarResources.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+
+  <Style
+    x:Key="TextBlock.AlarmSummary"
+    TargetType="{x:Type TextBlock}">
+    <Setter Property="TextWrapping" Value="Wrap" />
+    <Setter Property="Margin" Value="6,-1,6,0" />
+  </Style>
+
+  <Style
+    x:Key="DataGridCell.AlarmSummary"
+    TargetType="{x:Type DataGridCell}">
+    <Setter Property="IsHitTestVisible" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate
+          TargetType="{x:Type DataGridCell}">
+          <Grid>
+            <ContentPresenter
+              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+            <Rectangle
+              x:Name="AlternatingRowVerticalGridLine"
+              Width="1"
+              Margin="-1,0,0,0"
+              HorizontalAlignment="Left"
+              Fill="{StaticResource Brush.AlternatingRowBackground.DataGrid}" />
+          </Grid>
+          <ControlTemplate.Triggers>
+            <DataTrigger
+              Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"
+              Value="1">
+              <Setter TargetName="AlternatingRowVerticalGridLine" Property="Fill" Value="{Binding RowBackground, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
+            </DataTrigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style
+    x:Key="DataGridColumnHeader.AlarmSummary"
+    TargetType="{x:Type DataGridColumnHeader}">
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="Foreground" Value="White" />
+    <Setter Property="Background" Value="{StaticResource Brush.AlternatingRowBackground.DataGrid}" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="BorderThickness" Value="0,0,1,0" />
+    <Setter Property="BorderBrush" Value="{StaticResource Brush.Background.DataGrid}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate
+          TargetType="{x:Type DataGridColumnHeader}">
+          <Grid>
+            <Border
+              Background="{TemplateBinding Background}"
+              BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}"
+              Padding="{TemplateBinding Padding}">
+              <ContentPresenter
+                Margin="6,1,6,-1"
+                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                Content="{TemplateBinding Content}"
+                ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                ContentTemplate="{TemplateBinding ContentTemplate}"
+                RecognizesAccessKey="True"
+                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <DataTemplate
+    x:Key="DataTemplate.AlarmSummary.Type">
+    <Grid
+      MinWidth="28">
+      <Path
+        x:Name="ErrorIcon"
+        Width="10"
+        Height="10"
+        Margin="0,8"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Data="{StaticResource StreamGeometry.ErrorSignTiny}"
+        Fill="{StaticResource Brush.Red.ErrorSignTiny}"
+        Stretch="Uniform"
+        Visibility="Collapsed" />
+      <Path
+        x:Name="WarningIcon"
+        Width="11"
+        Height="9"
+        Margin="0,8"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Data="{StaticResource StreamGeometry.WarnSignTiny}"
+        Fill="{StaticResource Brush.Yellow.WarnSignTiny}"
+        Stretch="Uniform"
+        Visibility="Collapsed" />
+      <Path
+        x:Name="InfoIcon"
+        Width="13"
+        Height="15"
+        Margin="0,7"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Data="{StaticResource StreamGeometry.InfoSignTiny}"
+        Fill="White"
+        Stretch="Uniform"
+        Visibility="Collapsed" />
+    </Grid>
+    <DataTemplate.Triggers>
+      <DataTrigger
+        Binding="{Binding Type}"
+        Value="Error">
+        <Setter TargetName="ErrorIcon" Property="Visibility" Value="Visible" />
+      </DataTrigger>
+      <DataTrigger
+        Binding="{Binding Type}"
+        Value="Warning">
+        <Setter TargetName="WarningIcon" Property="Visibility" Value="Visible" />
+      </DataTrigger>
+      <DataTrigger
+        Binding="{Binding Type}"
+        Value="Info">
+        <Setter TargetName="InfoIcon" Property="Visibility" Value="Visible" />
+      </DataTrigger>
+    </DataTemplate.Triggers>
+  </DataTemplate>
+
+  <DataTemplate
+    x:Key="DataTemplate.AlarmSummary.Source">
+    <TextBlock
+      MinWidth="258"
+      Style="{StaticResource TextBlock.AlarmSummary}"
+      Text="{Binding Source}"
+      TextTrimming="CharacterEllipsis"
+      TextWrapping="NoWrap" />
+  </DataTemplate>
+
+  <DataTemplate
+    x:Key="DataTemplate.AlarmSummary.Message">
+    <TextBlock
+      Style="{StaticResource TextBlock.AlarmSummary}"
+      Text="{Binding Message}" />
+  </DataTemplate>
+
+  <DataTemplate
+    x:Key="DataTemplate.AlarmSummary.Timestamp">
+    <TextBlock
+      Foreground="{StaticResource Brush.Foreground.Date}"
+      Style="{StaticResource TextBlock.AlarmSummary}"
+      TextTrimming="CharacterEllipsis"
+      TextWrapping="NoWrap">
+      <Run Foreground="{StaticResource Brush.Foreground.DataGrid}"
+        Text="{Binding Timestamp, Mode=OneWay, StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" />
+    </TextBlock>
+  </DataTemplate>
+
+  <Style
+    x:Key="DataGrid.AlarmSummary"
+    TargetType="{x:Type DataGrid}">
+    <Setter Property="CanUserResizeColumns" Value="False" />
+    <Setter Property="CanUserResizeRows" Value="False" />
+    <Setter Property="CanUserReorderColumns" Value="False" />
+    <Setter Property="CanUserAddRows" Value="False" />
+    <Setter Property="CanUserDeleteRows" Value="False" />
+    <Setter Property="AutoGenerateColumns" Value="False" />
+    <Setter Property="CanUserSortColumns" Value="False" />
+    <Setter Property="IsReadOnly" Value="True" />
+    <Setter Property="Foreground" Value="{StaticResource Brush.Foreground.DataGrid}" />
+    <Setter Property="FontFamily" Value="Miramonte" />
+    <Setter Property="Background" Value="{StaticResource Brush.Background.DataGrid}" />
+    <Setter Property="AlternatingRowBackground" Value="{StaticResource Brush.AlternatingRowBackground.DataGrid}" />
+    <Setter Property="RowBackground" Value="{StaticResource Brush.Background.DataGrid}" />
+    <Setter Property="GridLinesVisibility" Value="Vertical" />
+    <Setter Property="VerticalGridLinesBrush" Value="Transparent" />
+    <Setter Property="HeadersVisibility" Value="Column" />
+    <Setter Property="FontSize" Value="22" />
+    <Setter Property="ColumnHeaderStyle" Value="{StaticResource DataGridColumnHeader.AlarmSummary}" />
+    <Setter Property="CellStyle" Value="{StaticResource DataGridCell.AlarmSummary}" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True" />
+    <Setter Property="VirtualizingStackPanel.ScrollUnit" Value="Pixel" />
+  </Style>
+
+  <!--  Copy from TextBlock  -->
+  <Style
+    x:Key="ItemsControl.AlarmSummary"
+    TargetType="{x:Type ItemsControl}">
+    <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+    <Setter Property="AllowDrop" Value="true" />
+    <Setter Property="Foreground" Value="#FF4E4E4E" />
+    <Setter Property="FontFamily" Value="{StaticResource FontFamily.Standard}" />
+    <Setter Property="FontSize" Value="{StaticResource FontSize.AlarmSummary.LogView}" />
+    <Setter Property="MinHeight" Value="63" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate
+          TargetType="{x:Type ItemsControl}">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition
+                Height="*" />
+              <RowDefinition
+                Height="Auto" />
+            </Grid.RowDefinitions>
+            <Border
+              x:Name="Border"
+              VerticalAlignment="Stretch"
+              Background="#80FFFFFF"
+              BorderBrush="#FFFFFFFF"
+              BorderThickness="3"
+              Padding="2">
+              <!--  The implementation places the Content into the ScrollViewer. It must be named PART_ContentHost for the control to function  -->
+              <ScrollViewer
+                x:Name="PART_ContentHost"
+                Margin="0"
+                Background="#00FFFFFF"
+                CanContentScroll="True"
+                HorizontalScrollBarVisibility="Auto"
+                VerticalScrollBarVisibility="Auto">
+                <ItemsPresenter />
+              </ScrollViewer>
+            </Border>
+            <Rectangle
+              Grid.Row="1"
+              Height="3"
+              Fill="{StaticResource Brush.Control.Background.Shadow}" />
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter TargetName="Border" Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" />
+              <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource DisabledBackgroundBrush}" />
+              <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+</ResourceDictionary>

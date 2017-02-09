@@ -1,0 +1,27 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary
+      Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/BrushResources.xaml" />
+    <ResourceDictionary
+      Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/FontResources.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+
+  <Style
+    TargetType="{x:Type TextBlock}">
+    <Setter Property="FontFamily" Value="{StaticResource FontFamily.Standard}" />
+  </Style>
+    
+  <Style
+    TargetType="{x:Type TextBlock}"
+    x:Key="TextBlock.Accordion.KeyValues">
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="FontFamily" Value="{StaticResource FontFamily.Standard}" />
+    <Setter Property="FontSize" Value="{StaticResource FontSize.Accordion.Content}" />
+    <Setter Property="Foreground" Value="{StaticResource Brush.Label.Foreground.Standard}" />
+  </Style>
+
+</ResourceDictionary>

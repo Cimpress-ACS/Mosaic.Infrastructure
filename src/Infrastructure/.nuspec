@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>ACS.Common.Infrastructure</id>
+    <version>2.1.4.0</version>
+    <authors>Cimpress</authors>
+    <description>Common utilities for logging, file access, credentials, WCF helper, MEF helper etc.</description>
+    <projectUrl>https://github.com/Cimpress-ACS/Mosaic.Infrastructure</projectUrl>
+    <tags>ACS, helpers</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="9.0.1" />
+      <dependency id="Rx-Core" version="2.2.5" />
+      <dependency id="Rx-Interfaces" version="2.2.5" />
+      <dependency id="Rx-Linq" version="2.2.5" />
+      <dependency id="Rx-Main" version="2.2.5" />
+      <dependency id="Rx-PlatformServices" version="2.2.5" />
+      <dependency id="bbv.Common" version="7.1.12149.1635" />
+      <dependency id="bbv.Common.AsyncModule" version="7.2.12149.1635" />
+      <dependency id="bbv.Common.StateMachine" version="7.4.12149.1635" />
+      <dependency id="log4net" version="2.0.5" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\$configuration$\VP.FF.PT.Common.Infrastructure.dll" target="lib\net45" />
+    <file src="bin\$configuration$\VP.FF.PT.Common.Infrastructure.pdb" target="lib\net45" />
+  </files>
+</package>

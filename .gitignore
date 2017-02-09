@@ -1,0 +1,13 @@
+bin/
+obj/
+*.user
+*.suo
+_Resharper*
+*.crunchsolution.cache
+
+/ThirdPartyLibs/nugetpackages
+
+*.sln.DotSettings
+*.sln.GhostDoc.xml
+
+/_NCrunch_ACS.Common.Infrastructure/StoredText/4377f2788ffe4780a04ad28c741a14f6

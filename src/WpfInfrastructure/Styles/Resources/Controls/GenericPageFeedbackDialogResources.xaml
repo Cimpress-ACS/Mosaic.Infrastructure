@@ -1,0 +1,71 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../BrushResources.xaml" />
+        <ResourceDictionary Source="../FontResources.xaml" />
+        <ResourceDictionary Source="ButtonResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
+    <SolidColorBrush x:Key="Brush.Modal.Background" Color="Gainsboro" />
+    <SolidColorBrush x:Key="Brush.FeedbackDialog.Border" Color="#99AAAD" />
+    
+    <ControlTemplate x:Key="GenericPage.Feedback.Dialog" TargetType="{x:Type controls:FeedbackDialog}">
+        <Grid>
+            <Border Background="{StaticResource Brush.Modal.Background}"
+                    HorizontalAlignment="Stretch" 
+                    Opacity="0.5"
+                    VerticalAlignment="Stretch">
+            </Border>
+            <Grid>
+                <Border Background="{StaticResource Brush.Control.Background.Shadow}"
+                            CornerRadius="20"
+                            Height="{TemplateBinding DialogHeight}"
+                            Margin="10,10,0,0"
+                            Width="{TemplateBinding DialogWidth}" />
+                <Border Background="{StaticResource Brush.View.Background}"
+                            BorderBrush="{StaticResource Brush.FeedbackDialog.Border}"
+                            BorderThickness="3"
+                            CornerRadius="20"
+                            Height="{TemplateBinding DialogHeight}"
+                            Margin="0,0,10,10"
+                            Width="{TemplateBinding DialogWidth}">
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Top"
+                                   FontFamily="{StaticResource FontFamily.Standard}"
+                                   FontSize="{StaticResource FontSize.Subtitle}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   Margin="5"
+                                   Text="{TemplateBinding TitleText}" />
+                        <ContentPresenter DockPanel.Dock="Bottom" Content="{TemplateBinding ActionSection}" />
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                      Margin="5"
+                                      VerticalAlignment="Stretch"
+                                      VerticalScrollBarVisibility="Auto">
+                            <ContentPresenter Content="{TemplateBinding ContentSection}" />
+                        </ScrollViewer>
+                    </DockPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </ControlTemplate>
+    
+    <Style TargetType="{x:Type controls:FeedbackDialog}">
+        <Setter Property="Foreground" Value="{StaticResource Brush.Label.Foreground.Standard}" />
+        <Setter Property="DialogHeight" Value="300" />
+        <Setter Property="DialogWidth" Value="500" />
+    </Style>
+    
+    <Style x:Key="GenericPage.Feedback.ErrorDialog" TargetType="{x:Type controls:FeedbackDialog}">
+        <Setter Property="Foreground" Value="{StaticResource Brush.ModuleControl.State.Error}" />
+        <Setter Property="DialogHeight" Value="500" />
+        <Setter Property="DialogWidth" Value="1000" />
+    </Style>
+    
+    <Style x:Key="GenericPage.Feedback.ImportExportDialog" TargetType="{x:Type controls:FeedbackDialog}">
+        <Setter Property="Foreground" Value="{StaticResource Brush.Label.Foreground.Standard}" />
+        <Setter Property="DialogHeight" Value="300" />
+        <Setter Property="DialogWidth" Value="500" />
+    </Style>
+    
+</ResourceDictionary>

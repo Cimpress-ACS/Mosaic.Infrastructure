@@ -1,0 +1,214 @@
+﻿<UserControl x:Class="VP.FF.PT.Common.WpfInfrastructure.Screens.Views.KeyPadView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:viewModels="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Screens.ViewModels"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             cal:Bind.AtDesignTime="True"
+             d:DataContext="{d:DesignInstance Type=viewModels:KeyPadViewModel, IsDesignTimeCreatable=True}"
+             x:Name="KeyPadViewx"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        
+        <DropShadowEffect x:Key="DropShadowEffect" 
+						  ShadowDepth="1" 
+						  Direction="-90" 
+						  BlurRadius="7" Color="#FF38596F"/>
+        <Style x:Key="buttonBorder" TargetType="Border" >
+            <Setter Property="Button.Effect" Value="{StaticResource DropShadowEffect}"/>
+            <Setter Property="Margin" Value="4"/>
+        </Style>
+        <LinearGradientBrush x:Key="KeyPadBackground" EndPoint="0.5,1.272" StartPoint="0.5,0">
+            <GradientStop Color="Gainsboro" Offset="0"/>
+            <GradientStop Color="#FF38596F" Offset="1"/>
+        </LinearGradientBrush>
+    </UserControl.Resources>
+
+    <Grid Background="{DynamicResource KeyPadBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid Row="0" Column="0">
+            <Border Style="{StaticResource buttonBorder}" Background="#FF38596F" CornerRadius="4"/>
+            <Button x:Name="Key7" Content="7" Style="{StaticResource Button.KeyPad}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="OnClick">
+                            <cal:Parameter Value="{Binding ElementName=Key7, Path=Content}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+        <Grid Row="0" Column="1">
+            <Border Style="{StaticResource buttonBorder}" Background="#FF38596F" CornerRadius="4"/>
+            <Button x:Name="Key8" Content="8" Style="{StaticResource Button.KeyPad}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="OnClick">
+                            <cal:Parameter Value="{Binding ElementName=Key8, Path=Content}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+        <Grid Row="0" Column="2">
+            <Border Style="{StaticResource buttonBorder}" Background="#FF38596F" CornerRadius="4"/>
+            <Button x:Name="Key9" Content="9" Style="{StaticResource Button.KeyPad}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="OnClick">
+                            <cal:Parameter Value="{Binding ElementName=Key9, Path=Content}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+        <Grid Row="1" Column="0">
+            <Border Style="{StaticResource buttonBorder}" Background="#FF38596F" CornerRadius="4"/>
+            <Button x:Name="Key4" Content="4" Style="{StaticResource Button.KeyPad}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="OnClick">
+                            <cal:Parameter Value="{Binding ElementName=Key4, Path=Content}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+        <Grid Row="1" Column="1">
+            <Border Style="{StaticResource buttonBorder}" Background="#FF38596F" CornerRadius="4"/>
+            <Button x:Name="Key5" Content="5" Style="{StaticResource Button.KeyPad}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="OnClick">
+                            <cal:Parameter Value="{Binding ElementName=Key5, Path=Content}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+        <Grid Row="1" Column="2">
+            <Border Style="{StaticResource buttonBorder}" Background="#FF38596F" CornerRadius="4"/>
+            <Button x:Name="Key6" Content="6" Style="{StaticResource Button.KeyPad}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="OnClick">
+                            <cal:Parameter Value="{Binding ElementName=Key6, Path=Content}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+        <Grid Row="2" Column="0">
+            <Border Style="{StaticResource buttonBorder}" Background="#FF38596F" CornerRadius="4"/>
+            <Button x:Name="Key1" Content="1" Style="{StaticResource Button.KeyPad}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="OnClick">
+                            <cal:Parameter Value="{Binding ElementName=Key1, Path=Content}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+        <Grid Row="2" Column="1">
+            <Border Style="{StaticResource buttonBorder}" Background="#FF38596F" CornerRadius="4"/>
+            <Button x:Name="Key2" Content="2" Style="{StaticResource Button.KeyPad}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="OnClick">
+                            <cal:Parameter Value="{Binding ElementName=Key2, Path=Content}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+        <Grid Row="2" Column="2">
+            <Border Style="{StaticResource buttonBorder}" Background="#FF38596F" CornerRadius="4"/>
+            <Button x:Name="Key3" Content="3" Style="{StaticResource Button.KeyPad}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="OnClick">
+                            <cal:Parameter Value="{Binding ElementName=Key3, Path=Content}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+        <Grid Row="3" ColumnSpan="2">
+            <Border Style="{StaticResource buttonBorder}" Background="#FF38596F" CornerRadius="4"/>
+            <Button x:Name="Key0" Content="0" Style="{StaticResource Button.KeyPadLarge}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="OnClick">
+                            <cal:Parameter Value="{Binding ElementName=Key0, Path=Content}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+        <Grid Row="3" Column="2">
+            <Border Style="{StaticResource buttonBorder}" Background="#FF38596F" CornerRadius="4"/>
+            <Button x:Name="Keyp" Content="." Style="{StaticResource Button.KeyPad}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="OnClick">
+                            <cal:Parameter Value="{Binding ElementName=Keyp, Path=Content}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+        <Grid Column="3" Grid.Row="2" Grid.RowSpan="3">
+            <Border Style="{StaticResource buttonBorder}" Background="#FF38596F" CornerRadius="4"/>
+            <Button x:Name="KeyEnter" Content="Enter" Style="{StaticResource Button.KeyPadVertical}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="OnClick">
+                            <cal:Parameter Value="{Binding ElementName=KeyEnter, Path=Content}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+        <Grid Column="3" Grid.Row="1">
+            <Border Style="{StaticResource buttonBorder}" Background="#FF38596F" CornerRadius="4"/>
+            <Button x:Name="KeyDel" Style="{StaticResource Button.KeyPad}" >
+                <Path Stretch="Fill" Width="36" Height="24" Data="F1M555.0371,274.4893L552.7871,276.7383L549.9861,273.9373L547.1991,276.7243L545.1131,274.6393L547.9001,271.8523L545.0101,268.9603L547.2601,266.7113L550.1501,269.6023L552.8921,266.8613L554.9761,268.9463L552.2361,271.6883z M555.3751,264.0003L544.8751,264.0003C543.1251,264.1253,535.0001,270.7503,535.0001,272.2503C535.0001,273.7503,543.1251,279.3753,544.8751,279.5003L555.3751,279.5003C558.8751,279.5003,559.3751,277.7093,559.3751,275.5003L559.3751,268.0003C559.3751,265.7913,558.7501,264.0003,555.3751,264.0003" Fill="White"/>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="OnClick">
+                            <cal:Parameter Value="{Binding ElementName=KeyDel, Path=Content}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+        <Grid Column="3" Row="0">
+            <Border Style="{StaticResource buttonBorder}" Background="#FF38596F" CornerRadius="4"/>
+            <Button x:Name="KeyEsc" Content="Esc" Style="{StaticResource Button.KeyPad}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="OnClick">
+                            <cal:Parameter Value="{Binding ElementName=KeyEsc, Path=Content}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,581 @@
+﻿<UserControl
+    x:Class="VP.FF.PT.Common.WpfInfrastructure.Screens.Views.ControllerView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit"
+    xmlns:converters="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Extensions"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Screens.ViewModels"
+    d:DataContext="{d:DesignInstance Type=viewModels:MasterDetailViewModel, IsDesignTimeCreatable=True}"
+    d:DesignHeight="600"
+    d:designWith="1600"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/SaberStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <converters:BooleanToStyleConverter
+                x:Key="BooleanToStyleConverter"
+                FalseStyle="{StaticResource Rectangle.Red}"
+                TrueStyle="{StaticResource Rectangle.Green}" />
+
+            <converters:HasItemsWithForcingEnabledToBrushConverter
+                x:Key="HasItemsWithForcingEnabledToBrushConverter"
+                FalseValue="{StaticResource Brush.AccordionControl.Header.Background}"
+                TrueValue="{StaticResource Brush.Forcing.Primary}" />
+
+            <Thickness
+                x:Key="Expander.Margin"
+                Bottom="3" />
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <!--  Plc and accordeons  -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--  Plc information  -->
+        <Grid
+            Grid.Row="0"
+            Grid.IsSharedSizeScope="True"
+            TextBlock.FontSize="{StaticResource FontSize.GenericPlcView.Info}">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="15" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="15" />
+                <ColumnDefinition
+                    Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!--  Name, Type, Ctrl-Id  -->
+            <Grid
+                Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="Auto"
+                        SharedSizeGroup="firstColumn" />
+                    <ColumnDefinition
+                        Width="20" />
+                    <ColumnDefinition
+                        Width="460" />
+                    <ColumnDefinition
+                        Width="40" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    HorizontalAlignment="Left"
+                    Foreground="{StaticResource Brush.GenericPlcView.Foreground.Label}"
+                    Text="{Binding FullName}" Width="AUTO" />
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    HorizontalAlignment="Right"
+                    Foreground="{StaticResource Brush.GenericPlcView.Foreground.Label}"
+                    Text="NAME" Width="68" />
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    HorizontalAlignment="Right"
+                    Foreground="{StaticResource Brush.GenericPlcView.Foreground.Label}"
+                    Text="TYPE" Width="52" />
+                <TextBlock
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    HorizontalAlignment="Right"
+                    Foreground="{StaticResource Brush.GenericPlcView.Foreground.Label}"
+                    Text="CTRL-ID" Width="86" />
+                <TextBlock
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    HorizontalAlignment="Right"
+                    Foreground="{StaticResource Brush.GenericPlcView.Foreground.Label}"
+                    Text="PLC PATH" Width="101" />
+                <TextBlock
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    HorizontalAlignment="Right"
+                    Foreground="{StaticResource Brush.GenericPlcView.Foreground.Label}"
+                    Text="MODE" Width="70" />
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Foreground="{StaticResource Brush.GenericPlcView.Foreground.Data}"
+                    Text="{Binding Name}"
+                    TextWrapping="WrapWithOverflow" />
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Foreground="{StaticResource Brush.GenericPlcView.Foreground.Data}"
+                    Text="{Binding Type}"
+                    TextWrapping="WrapWithOverflow" />
+                <TextBlock
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Foreground="{StaticResource Brush.GenericPlcView.Foreground.Data}"
+                    Text="{Binding Id}"
+                    TextWrapping="WrapWithOverflow" />
+                <TextBlock
+                    Grid.Row="4"
+                    Grid.Column="2"
+                    Foreground="{StaticResource Brush.GenericPlcView.Foreground.Data}"
+                    Text="{Binding PlcControllerPath}"
+                    TextWrapping="WrapWithOverflow" />
+                <TextBlock
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    Foreground="{StaticResource Brush.GenericPlcView.Foreground.Data}"
+                    Text="{Binding ControllerMode}"
+                    TextWrapping="WrapWithOverflow" />
+            </Grid>
+
+            <!--  Status (enabled, forcing, simulated)  -->
+            <Grid
+                Grid.Row="0"
+                Grid.Column="2"
+                Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="Auto" />
+                    <ColumnDefinition
+                        Width="20" />
+                    <ColumnDefinition
+                        Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,19,0"
+                    HorizontalAlignment="Right"
+                    Foreground="{StaticResource Brush.GenericPlcView.Foreground.Label}"
+                    Text="IS ENABLED" />
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,19,0"
+                    HorizontalAlignment="Right"
+                    Foreground="{StaticResource Brush.GenericPlcView.Foreground.Label}"
+                    Text="IS FORCING" />
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    HorizontalAlignment="Right"
+                    Foreground="{StaticResource Brush.GenericPlcView.Foreground.Label}"
+                    Text="IS SIMULATED" />
+                <Rectangle
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Margin="0,6"
+                    Style="{Binding IsEnabled, Converter={StaticResource BooleanToStyleConverter}}" />
+                <Rectangle
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Margin="0,6"
+                    Style="{Binding EnableForcing, Converter={StaticResource BooleanToStyleConverter}}" />
+                <Rectangle
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Margin="0,6"
+                    Style="{Binding IsSimulation, Converter={StaticResource BooleanToStyleConverter}}" />
+            </Grid>
+
+            <StackPanel
+                IsEnabled="{Binding IsEngineer}"
+                Grid.Row="0"
+                Grid.Column="4"
+                Margin="0,5,0,0"
+                VerticalAlignment="Top"
+                CanHorizontallyScroll="True"
+                Orientation="Horizontal">
+
+                <StackPanel.Resources>
+                    <Style
+                        x:Key="StatusButton.ChangeModeOnController"
+                        BasedOn="{StaticResource {x:Type Button}}"
+                        TargetType="{x:Type Button}">
+                        <Style.Triggers>
+                            <DataTrigger
+                                Binding="{Binding Path=IsAutoMode}"
+                                Value="True">
+                                <Setter Property="Content" Value="To Manual" />
+                            </DataTrigger>
+                            <DataTrigger
+                                Binding="{Binding Path=IsAutoMode}"
+                                Value="False">
+                                <Setter Property="Content" Value="To Auto" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                    <Style
+                        x:Key="StatusButton.ChangeSimulationModeOnController"
+                        BasedOn="{StaticResource {x:Type Button}}"
+                        TargetType="{x:Type Button}">
+                        <Style.Triggers>
+                            <DataTrigger
+                                Binding="{Binding Path=IsSimulation}"
+                                Value="True">
+                                <Setter Property="Content" Value="-> Real" />
+                            </DataTrigger>
+                            <DataTrigger
+                                Binding="{Binding Path=IsSimulation}"
+                                Value="False">
+                                <Setter Property="Content" Value="-> Sim" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                    <Style
+                        x:Key="StatusButton.ChangeSimulationPropagateModeOnController"
+                        BasedOn="{StaticResource {x:Type Button}}"
+                        TargetType="{x:Type Button}">
+                        <Style.Triggers>
+                            <DataTrigger
+                                Binding="{Binding Path=IsSimulation}"
+                                Value="True">
+                                <Setter Property="Content" Value="-> PClear" />
+                                <Setter Property="ToolTip" Value="Clear All Subcontroller Simulation" />
+                            </DataTrigger>
+                            <DataTrigger
+                                Binding="{Binding Path=IsSimulation}"
+                                Value="False">
+                                <Setter Property="Content" Value="-> PSim" />
+                                <Setter Property="ToolTip" Value="Set All Subcontroller Simulation" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Resources>
+
+                <Button
+                    HorizontalAlignment="Center"
+                    FontSize="30"
+                    Style="{StaticResource StatusButton.ChangeModeOnController}"
+                    cal:Message.Attach="ChangeModeOnController($dataContext)" />
+                <Button
+                    HorizontalAlignment="Center"
+                    FontSize="30"
+                    Style="{StaticResource StatusButton.ChangeSimulationModeOnController}"
+                    cal:Message.Attach="ChangeSimulationModeOnController($dataContext)" />
+                <Button
+                    HorizontalAlignment="Center"
+                    FontSize="30"
+                    Style="{StaticResource StatusButton.ChangeSimulationPropagateModeOnController}"
+                    cal:Message.Attach="ChangeSimulationPropagateModeOnController($dataContext)" />
+            </StackPanel>
+
+            <!--  Alarm  -->
+            <Grid
+                IsEnabled="{Binding IsEngineer}"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="Auto"
+                        SharedSizeGroup="firstColumn" />
+                    <ColumnDefinition
+                        Width="20" />
+                    <ColumnDefinition
+                        Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Grid.Column="0"
+                    HorizontalAlignment="Right"
+                    Foreground="{StaticResource Brush.GenericPlcView.Foreground.Label}"
+                    Text="ALARM" />
+                <TextBlock
+                    Grid.Column="2"
+                    Width="370"
+                    Foreground="{StaticResource Brush.GenericPlcView.Foreground.Data}"
+                    Text="{Binding ActiveAlarm}"
+                    TextWrapping="Wrap" />
+            </Grid>
+        </Grid>
+
+        <!--  Control buttons  -->
+        <StackPanel
+            IsEnabled="{Binding IsEngineer}"
+            Grid.Row="0"
+            Margin="0,0,20,5"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Orientation="Horizontal">
+            <ToggleButton
+                Margin="0,0,25,0"
+                IsChecked="{Binding EnableForcing, Mode=OneWay}"
+                Style="{StaticResource ToggleButton.Forcing}" />
+            <Button
+                Margin="0,0,25,0"
+                Style="{StaticResource Button.Reload}"
+                cal:Message.Attach="LoadRootController" />
+            <Button
+                Margin="0,0,25,0"
+                Style="{StaticResource Button.Save}"
+                cal:Message.Attach="SaveChangesOnController($dataContext)" />
+            <Button
+                Style="{StaticResource Button.Reset}"
+                cal:Message.Attach="ResetChangesOnController($dataContext)" />
+        </StackPanel>
+
+        <!--  Accordeon controls  -->
+        <Grid
+            Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="*" />
+                <ColumnDefinition
+                    Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border
+                Name="RoundedCornerMask"
+                Margin="0,0,10,0"
+                Background="White"
+                CornerRadius="14,0,0,0" />
+            <Grid
+                Grid.Column="0"
+                Margin="0,0,10,0"
+                Background="Transparent">
+                <Grid.OpacityMask>
+                    <VisualBrush
+                        Visual="{Binding ElementName=RoundedCornerMask}" />
+                </Grid.OpacityMask>
+                <controls:Accordion
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="{StaticResource Brush.View.Background}"
+                    FontFamily="{StaticResource FontFamily.Standard}"
+                    Style="{StaticResource AccordionStyleVP}">
+                    <controls:AccordionItem
+                        x:Name="CommandsItem"
+                        Margin="{StaticResource Expander.Margin}"
+                        AccordionButtonStyle="{StaticResource AccordionButtonStyleVP}"
+                        Header="COMMANDS"
+                        Style="{StaticResource AccordionItemStyleVP}">
+                        <Grid
+                            Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
+                            Height="{Binding ElementName=CommandsItem, Path=ActualHeight}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="{StaticResource Brush.View.Background}">
+                            <ScrollViewer
+                                IsEnabled="{Binding IsEngineer}"
+                                Margin="0,3,0,37"
+                                HorizontalScrollBarVisibility="Disabled"
+                                VerticalScrollBarVisibility="Auto">
+                                <ListView
+                                    Background="Transparent"
+                                    ItemContainerStyle="{StaticResource SimpleItemContainerStyle}"
+                                    ItemTemplate="{StaticResource CommandDataTemplate}"
+                                    ItemsSource="{Binding Commands}"
+                                    Padding="22,30,0,0"
+                                    Style="{StaticResource SimpleListViewStyle}"
+                                    extensions:AttachedProperties.AttachedCommand="{Binding Command}" />
+                            </ScrollViewer>
+                        </Grid>
+                    </controls:AccordionItem>
+                    <controls:AccordionItem
+                        x:Name="ParameterItem"
+                        Margin="{StaticResource Expander.Margin}"
+                        AccordionButtonStyle="{StaticResource AccordionButtonStyleVP}"
+                        Header="PARAMETER"
+                        Style="{StaticResource AccordionItemStyleVP}">
+                        <Grid
+                            Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
+                            Height="{Binding ElementName=ParameterItem, Path=ActualHeight}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="{StaticResource Brush.View.Background}">
+                            <ScrollViewer
+                                IsEnabled="{Binding IsEngineer}"
+                                Margin="0,3,0,37"
+                                HorizontalScrollBarVisibility="Disabled"
+                                VerticalScrollBarVisibility="Auto">
+                                <ListView
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    ItemContainerStyle="{StaticResource SimpleItemContainerStyle}"
+                                    ItemsSource="{Binding Parameters}"
+                                    Style="{StaticResource TagValueListViewStyle}" />
+                            </ScrollViewer>
+                        </Grid>
+                    </controls:AccordionItem>
+                    <controls:AccordionItem
+                        x:Name="ConfigurationItem"
+                        AccordionButtonStyle="{StaticResource AccordionButtonStyleVP}"
+                        Header="CONFIGURATION"
+                        Style="{StaticResource AccordionItemStyleVP}">
+                        <Grid
+                            Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
+                            Height="{Binding ElementName=ConfigurationItem, Path=ActualHeight}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="{StaticResource Brush.View.Background}">
+                            <ScrollViewer
+                                IsEnabled="{Binding IsEngineer}"
+                                Margin="0,3,0,37"
+                                HorizontalScrollBarVisibility="Disabled"
+                                VerticalScrollBarVisibility="Auto">
+                                <ListView
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    ItemContainerStyle="{StaticResource SimpleItemContainerStyle}"
+                                    ItemsSource="{Binding Configuration}"
+                                    Padding="0,30,0,0"
+                                    Style="{StaticResource TagValueListViewStyle}" />
+                            </ScrollViewer>
+                        </Grid>
+                    </controls:AccordionItem>
+                </controls:Accordion>
+            </Grid>
+
+            <Grid
+                Grid.Column="1"
+                Margin="0,0,10,0">
+                <controls:Accordion
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="{StaticResource Brush.View.Background}"
+                    Style="{DynamicResource AccordionStyleVP}">
+                    <controls:AccordionItem
+                        x:Name="ActualValuesItem"
+                        Margin="{StaticResource Expander.Margin}"
+                        AccordionButtonStyle="{DynamicResource AccordionButtonStyleVP}"
+                        Header="ACTUAL VALUES"
+                        Style="{DynamicResource AccordionItemStyleVP}">
+                        <Grid
+                            Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
+                            Height="{Binding ElementName=ActualValuesItem, Path=ActualHeight}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="{StaticResource Brush.View.Background}">
+                            <ScrollViewer
+                                IsEnabled="{Binding IsEngineer}"
+                                Margin="0,3,0,37"
+                                HorizontalScrollBarVisibility="Disabled"
+                                VerticalScrollBarVisibility="Auto">
+                                <ListView
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    ItemContainerStyle="{StaticResource SimpleItemContainerStyle}"
+                                    ItemsSource="{Binding ActualValues}"
+                                    Style="{StaticResource TagValueListViewStyle}" />
+                            </ScrollViewer>
+                        </Grid>
+                    </controls:AccordionItem>
+                    <controls:AccordionItem
+                        x:Name="InputsItems"
+                        Margin="{StaticResource Expander.Margin}"
+                        AccordionButtonStyle="{DynamicResource AccordionButtonStyleVP}"
+                        Header="INPUTS"
+                        Style="{DynamicResource AccordionItemStyleVP}"
+                        extensions:AttachedProperties.AdditionalBackground="{Binding Inputs, Converter={StaticResource HasItemsWithForcingEnabledToBrushConverter}}">
+                        <Grid
+                            Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
+                            Height="{Binding ElementName=InputsItems, Path=ActualHeight}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="{StaticResource Brush.View.Background}">
+                            <ScrollViewer
+                                IsEnabled="{Binding IsEngineer}"
+                                Margin="0,3,0,37"
+                                HorizontalScrollBarVisibility="Disabled"
+                                VerticalScrollBarVisibility="Auto">
+                                <ListView
+                                    Margin="0,23,0,0"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Grid.IsSharedSizeScope="True"
+                                    ItemContainerStyle="{StaticResource SimpleItemContainerStyle}"
+                                    ItemTemplateSelector="{StaticResource ForcingTemplateSelector}"
+                                    ItemsSource="{Binding Inputs}"
+                                    Padding="0,30,0,0"
+                                    Style="{StaticResource TagValueListViewStyle}" />
+                            </ScrollViewer>
+                        </Grid>
+                    </controls:AccordionItem>
+                    <controls:AccordionItem
+                        x:Name="OutputsItems"
+                        AccordionButtonStyle="{DynamicResource AccordionButtonStyleVP}"
+                        Header="OUTPUTS"
+                        Style="{DynamicResource AccordionItemStyleVP}"
+                        extensions:AttachedProperties.AdditionalBackground="{Binding Outputs, Converter={StaticResource HasItemsWithForcingEnabledToBrushConverter}}">
+                        <Grid
+                            Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
+                            Height="{Binding ElementName=OutputsItems, Path=ActualHeight}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="{StaticResource Brush.View.Background}">
+                            <ScrollViewer
+                                IsEnabled="{Binding IsEngineer}"
+                                Margin="0,3,0,37"
+                                HorizontalScrollBarVisibility="Disabled"
+                                VerticalScrollBarVisibility="Auto">
+                                <ListView
+                                    Margin="0,23,0,0"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Grid.IsSharedSizeScope="True"
+                                    ItemContainerStyle="{StaticResource SimpleItemContainerStyle}"
+                                    ItemTemplateSelector="{StaticResource ForcingTemplateSelector}"
+                                    ItemsSource="{Binding Outputs}"
+                                    Padding="0,30,0,0"
+                                    Style="{StaticResource TagValueListViewStyle}" />
+                            </ScrollViewer>
+                        </Grid>
+                    </controls:AccordionItem>
+                </controls:Accordion>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

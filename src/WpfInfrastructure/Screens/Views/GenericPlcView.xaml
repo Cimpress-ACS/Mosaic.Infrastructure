@@ -1,0 +1,151 @@
+﻿<UserControl
+    x:Class="VP.FF.PT.Common.WpfInfrastructure.Screens.Views.GenericPlcView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:controls="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Screens.ViewModels"
+    xmlns:views="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Screens.Views"
+    cal:Bind.AtDesignTime="True"
+    d:DataContext="{d:DesignInstance Type=viewModels:GenericPlcViewModel, IsDesignTimeCreatable=True}"
+    d:DesignHeight="1000"
+    d:DesignWidth="1900"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/SaberStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <controls:DelayedLoadedContentControl
+            States="{Binding States}"
+            Style="{StaticResource DelayedLoaded.Default}"
+            Template="{StaticResource DelayedLoaded}">
+
+            <controls:DelayedLoadedContentControl.ErrorActionSection>
+                <Button
+                    Style="{StaticResource Button.Reload}"
+                    cal:Message.Attach="LoadRootController" />
+            </controls:DelayedLoadedContentControl.ErrorActionSection>
+
+            <DockPanel
+                LastChildFill="True">
+
+                <!--  Tree control  -->
+                <Border
+                    Width="506"
+                    Margin="0,0,10,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="{StaticResource Brush.View.Background}"
+                    CornerRadius="0,19,0,0"
+                    DockPanel.Dock="Left">
+
+                    <DockPanel>
+                        <WrapPanel
+                            IsEnabled="{Binding IsEngineer}"
+                            HorizontalAlignment="Center"
+                            DockPanel.Dock="Bottom">
+                            <Button
+                                x:Name="Export"
+                                Margin="10"
+                                Style="{StaticResource Button.Export}"
+                                cal:Message.Attach="Export" />
+                            <Button
+                                x:Name="Import"
+                                Margin="10"
+                                Style="{StaticResource Button.Import}"
+                                cal:Message.Attach="Import" />
+                            <Button
+                                Margin="10"
+                                Style="{StaticResource Button.Automatic}"
+                                cal:Message.Attach="SetAllControllersToAutoMode" />
+                        </WrapPanel>
+                        <views:MasterTreeView
+                            Width="506"
+                            VerticalAlignment="Stretch"
+                            Background="Transparent"
+                            DockPanel.Dock="Top">
+                            <views:MasterTreeView.OpacityMask>
+                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                    <LinearGradientBrush.GradientStops>
+                                        <GradientStop Offset="0.8" Color="Black" />
+                                        <GradientStop Offset="0.99" />
+                                    </LinearGradientBrush.GradientStops>
+                                </LinearGradientBrush>
+                            </views:MasterTreeView.OpacityMask>
+                        </views:MasterTreeView>
+                    </DockPanel>
+                </Border>
+
+                <controls:DelayedLoadedContentControl
+                    States="{Binding DetailStates}"
+                    Style="{StaticResource DelayedLoaded.Default}"
+                    Template="{StaticResource DelayedLoaded}">
+                    <views:ControllerView
+                        DataContext="{Binding SelectedItem}" />
+                </controls:DelayedLoadedContentControl>
+
+            </DockPanel>
+        </controls:DelayedLoadedContentControl>
+
+        <controls:FeedbackDialog
+            DataContext="{Binding ImportResultViewModel}"
+            Style="{StaticResource GenericPage.Feedback.ImportExportDialog}"
+            Template="{StaticResource GenericPage.Feedback.Dialog}"
+            TitleText="Import Result"
+            Visibility="{Binding Path=IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <controls:FeedbackDialog.ContentSection>
+                <Grid>
+                    <StackPanel
+                        x:Name="FailureFeedback"
+                        Visibility="{Binding Path=HasFailed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <TextBlock
+                            Margin="0,0,0,10"
+                            Text="The following problems occured on the import (those nodes have not been imported):" />
+                        <TextBlock
+                            Text="{Binding Failures}" />
+                    </StackPanel>
+                    <TextBlock
+                        Text="Successfully imported all data."
+                        Visibility="{Binding Path=HasFailed, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
+                </Grid>
+            </controls:FeedbackDialog.ContentSection>
+            <controls:FeedbackDialog.ActionSection>
+                <Button
+                    Style="{StaticResource Button.Close}"
+                    cal:Message.Attach="Close" />
+            </controls:FeedbackDialog.ActionSection>
+        </controls:FeedbackDialog>
+
+        <controls:FeedbackDialog
+            DataContext="{Binding ExportResultViewModel}"
+            Style="{StaticResource GenericPage.Feedback.ImportExportDialog}"
+            Template="{StaticResource GenericPage.Feedback.Dialog}"
+            TitleText="Export Result"
+            Visibility="{Binding Path=IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <controls:FeedbackDialog.ContentSection>
+                <Grid>
+                    <TextBlock
+                        Text="Could not finish export of data."
+                        Visibility="{Binding Path=HasFailed, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <TextBlock
+                        Text="Successfully exported all data."
+                        Visibility="{Binding Path=HasFailed, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
+                </Grid>
+            </controls:FeedbackDialog.ContentSection>
+            <controls:FeedbackDialog.ActionSection>
+                <Button
+                    Style="{StaticResource Button.Close}"
+                    cal:Message.Attach="Close" />
+            </controls:FeedbackDialog.ActionSection>
+        </controls:FeedbackDialog>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>ACS.Common.Infrastructure</id>
+    <version>0.3.1</version>
+    <authors>ACS</authors>
+    <description>Common utilities used in Aladdin and Promo</description>
+    <projectUrl>https://mcpstash.cimpress.net/projects/ACS/repos/acs.common.infrastructure/browse</projectUrl>
+    <tags>ACS, Aladdin, Saber, Promo</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="6.0.8" />
+      <dependency id="Rx-Core" version="2.2.5" />
+      <dependency id="Rx-Interfaces" version="2.2.5" />
+      <dependency id="Rx-Linq" version="2.2.5" />
+      <dependency id="Rx-Main" version="2.2.5" />
+      <dependency id="Rx-PlatformServices" version="2.2.5" />
+      <dependency id="bbv.Common" version="7.1.12149.1635" />
+      <dependency id="bbv.Common.AsyncModule" version="7.2.12149.1635" />
+      <dependency id="bbv.Common.StateMachine" version="7.4.12149.1635" />
+      <dependency id="log4net" version="2.0.3" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="src\bin\Release\VP.FF.PT.Common.Infrastructure.dll" target="lib\net45" />
+    <file src="src\bin\Release\VP.FF.PT.Common.Infrastructure.pdb" target="lib\net45" />
+  </files>
+</package>

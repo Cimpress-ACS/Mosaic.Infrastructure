@@ -1,0 +1,572 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Controls"
+    xmlns:Converter="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Converters"
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+
+
+
+
+    <Converter:ColorToBrushConverter
+        x:Key="ColorToBrushConverter" />
+
+
+
+    <ControlTemplate
+        x:Key="ShirtSequenceControlTemplate"
+        TargetType="{x:Type Controls:ShirtSequenceControl}">
+
+
+
+        <Grid
+            x:Name="PART_LayoutRoot"
+            RenderTransformOrigin="0.5,0">
+
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup
+                    x:Name="VisualStateGroup">
+                    <VisualState
+                        x:Name="Next">
+
+                        <!--  FillBehavior="Stop"  -->
+
+
+                        <Storyboard
+                            FillBehavior="Stop">
+
+
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="RecentShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="0.7" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:0.4"
+                                    Value="0.7" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:1"
+                                    Value="0.4">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase
+                                            EasingMode="EaseIn" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="RecentShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="0.7" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:0.4"
+                                    Value="0.7" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:1"
+                                    Value="0.4">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase
+                                            EasingMode="EaseIn" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="RecentShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="300" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:0.4"
+                                    Value="300" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:1"
+                                    Value="800">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase
+                                            EasingMode="EaseIn" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="RecentShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="0" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:0.4"
+                                    Value="0" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:1"
+                                    Value="0">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase
+                                            EasingMode="EaseIn" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="RecentShirt"
+                                Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:1.3"
+                                    Value="0">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase
+                                            EasingMode="EaseOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="CurrentShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="0" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:0.4"
+                                    Value="0" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:1.3"
+                                    Value="300">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase
+                                            EasingMode="EaseInOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="CurrentShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="0" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:0.4"
+                                    Value="0" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:1.3"
+                                    Value="0">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase
+                                            EasingMode="EaseInOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="CurrentShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="1" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:0.4"
+                                    Value="1" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:1.3"
+                                    Value="0.7">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase
+                                            EasingMode="EaseInOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="CurrentShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="1" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:0.4"
+                                    Value="1" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:1.3"
+                                    Value="0.7">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase
+                                            EasingMode="EaseInOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="NextShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="1.2" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:0.4"
+                                    Value="1.2" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:1.3"
+                                    Value="1">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase
+                                            EasingMode="EaseInOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="NextShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="1.2" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:0.4"
+                                    Value="1.2" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:1.3"
+                                    Value="1">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase
+                                            EasingMode="EaseInOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="NextShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="-400" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:0.4"
+                                    Value="-400" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:1.3"
+                                    Value="0">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase
+                                            EasingMode="EaseInOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="NextShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="0" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:0.4"
+                                    Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames
+                                Storyboard.TargetName="NextShirt"
+                                Storyboard.TargetProperty="(UIElement.Visibility)">
+                                <DiscreteObjectKeyFrame
+                                    KeyTime="0"
+                                    Value="{x:Static Visibility.Visible}" />
+                                <DiscreteObjectKeyFrame
+                                    KeyTime="0:0:0.4"
+                                    Value="{x:Static Visibility.Visible}" />
+                                <DiscreteObjectKeyFrame
+                                    KeyTime="0:0:1.3"
+                                    Value="{x:Static Visibility.Visible}" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="NextShirt"
+                                Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="0" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:0.4"
+                                    Value="0" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:1.3"
+                                    Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="CurrentShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:0.4"
+                                    Value="0" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:1"
+                                    Value="5">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase
+                                            EasingMode="EaseIn" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:1.6"
+                                    Value="0">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <BackEase
+                                            EasingMode="EaseOut" Amplitude="2" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="RecentShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:0.4"
+                                    Value="0" />
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0:0:1"
+                                    Value="15">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase
+                                            EasingMode="EaseIn" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                            	Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="NextShirt">
+                            	<EasingDoubleKeyFrame
+                            		KeyTime="0:0:0.4"
+                            		Value="0" />
+                            	<EasingDoubleKeyFrame
+                            		KeyTime="0:0:1"
+                            		Value="5">
+                            		<EasingDoubleKeyFrame.EasingFunction>
+                            			<CircleEase
+                            				EasingMode="EaseIn" />
+                            		</EasingDoubleKeyFrame.EasingFunction>
+                            	</EasingDoubleKeyFrame>
+                            	<EasingDoubleKeyFrame
+                            		KeyTime="0:0:1.6"
+                            		Value="0">
+                            		<EasingDoubleKeyFrame.EasingFunction>
+                            			<BackEase
+                            				EasingMode="EaseOut" Amplitude="2" />
+                            		</EasingDoubleKeyFrame.EasingFunction>
+                            	</EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+
+                        </Storyboard>
+
+                    </VisualState>
+
+
+                    <VisualState
+                        x:Name="Jump">
+
+
+                        <Storyboard>
+
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="NextShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="1.2" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="NextShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="1.2" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="RecentShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="0.7" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="RecentShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="0.7" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="RecentShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="300" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="CurrentShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="RecentShirt"
+                                Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="NextShirt"
+                                Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="NextShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="-200" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="NextShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetName="RecentShirt"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                                <EasingDoubleKeyFrame
+                                    KeyTime="0"
+                                    Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+
+                        </Storyboard>
+
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+
+
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform
+                        ScaleX="{Binding CurrentShirt.Size, RelativeSource={RelativeSource TemplatedParent}}"
+                        ScaleY="{Binding CurrentShirt.Size, RelativeSource={RelativeSource TemplatedParent}}" />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                </TransformGroup>
+            </Grid.RenderTransform>
+
+
+
+            <Grid
+                Width="Auto"
+                Height="Auto">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger>
+                        <ei:GoToStateAction
+                            StateName="Jump" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <!--  Size="{Binding RecentShirt.Size, RelativeSource={RelativeSource TemplatedParent}}"  -->
+                <Controls:ShirtControl
+                    x:Name="RecentShirt"
+                    RenderTransformOrigin="0.5,0"
+                    ShirtState="{Binding RecentShirt.ShirtState, RelativeSource={RelativeSource TemplatedParent}}"
+                    ShirtType="{Binding RecentShirt.ShirtType, RelativeSource={RelativeSource TemplatedParent}}"
+                    Template="{DynamicResource ShirtControlTemplate}"
+                    Color="{Binding RecentShirt.Color, Converter={StaticResource ColorToBrushConverter}, RelativeSource={RelativeSource TemplatedParent}}" IsHeadVisible="False">
+                    <Controls:ShirtControl.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform
+                                ScaleX="0.7"
+                                ScaleY="0.7" />
+                            <SkewTransform />
+                            <RotateTransform />
+                            <TranslateTransform X="57" Y="99" />
+                        </TransformGroup>
+                    </Controls:ShirtControl.RenderTransform>
+                </Controls:ShirtControl>
+
+                <!--  ShirtState="{Binding CurrentShirt.ShirtState, RelativeSource={RelativeSource TemplatedParent}}"  -->
+                <Controls:ShirtControl
+                    x:Name="CurrentShirt"
+                    OriginLabel="{Binding CurrentShirt.OriginLabel, RelativeSource={RelativeSource TemplatedParent}}"
+                    RenderTransformOrigin="0.5,0"
+                    ShirtState="{Binding CurrentShirt.ShirtState, RelativeSource={RelativeSource TemplatedParent}}"
+                    ShirtType="{Binding RecentShirt.ShirtType, RelativeSource={RelativeSource TemplatedParent}}"
+                    Template="{DynamicResource ShirtControlTemplate}"
+                    Color="{Binding CurrentShirt.Color, Converter={StaticResource ColorToBrushConverter}, RelativeSource={RelativeSource TemplatedParent}}" IsHeadVisible="False">
+                    <Controls:ShirtControl.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Controls:ShirtControl.RenderTransform>
+                </Controls:ShirtControl>
+                <!--  Template="{DynamicResource ShirtControlTemplate}"  -->
+
+
+                <Controls:ShirtControl
+                    x:Name="NextShirt"
+                    RenderTransformOrigin="0.5,0"
+                    Template="{DynamicResource ShirtControlTemplate}" IsHeadVisible="False">
+                    <Controls:ShirtControl.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform
+                                ScaleX="1.2"
+                                ScaleY="1.2" />
+                            <SkewTransform />
+                            <RotateTransform />
+                            <TranslateTransform X="-200" />
+                        </TransformGroup>
+                    </Controls:ShirtControl.RenderTransform>
+                </Controls:ShirtControl>
+
+                <!--
+                    <Controls:ShirtControl
+                    x:Name="NextShirt"
+                    RenderTransformOrigin="0.5,0"
+                    Template="{DynamicResource ShirtControlTemplate}"
+                    >
+                    <Controls:ShirtControl.RenderTransform>
+                    <TransformGroup>
+                    <ScaleTransform
+                    ScaleX="0.5"
+                    ScaleY="0.5" />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                    </TransformGroup>
+                    </Controls:ShirtControl.RenderTransform>
+                    
+                    </Controls:ShirtControl>
+                -->
+                <!--
+                    <StackPanel
+                    Margin="0,0,486,271.89"
+                    Orientation="Vertical">
+                    
+                    <TextBlock
+                    TextWrapping="Wrap"><Run Text="Current:"/><Run Text=" "/><Run
+                    Text="{Binding CurrentShirt.ShirtState, RelativeSource={RelativeSource TemplatedParent}}" /><LineBreak /><Run Text="Recent:"/><Run Text=" "/><Run
+                    Text="{Binding RecentShirt.ShirtState, RelativeSource={RelativeSource TemplatedParent}}" /><LineBreak /><Run Text="Index:"/><Run Text=" "/><Run
+                    Text="{Binding CurrentBatchIndex, RelativeSource={RelativeSource TemplatedParent}}" /><LineBreak /></TextBlock>
+                    </StackPanel>
+                    <StackPanel Margin="572.04,0,0,423.373" Orientation="Vertical">
+                    
+                    
+                    <TextBlock
+                    x:Name="textBlock"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Text="TextBlock"
+                    TextWrapping="Wrap" />
+                    
+                    </StackPanel>
+                -->
+            </Grid>
+
+        </Grid>
+    </ControlTemplate>
+
+</ResourceDictionary>

@@ -1,0 +1,37 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary
+      Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/BrushResources.xaml" />
+    <ResourceDictionary
+      Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/FontResources.xaml" />
+    <ResourceDictionary
+      Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/IconResources.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+
+  <Style
+    x:Key="Retangle.Base"
+    TargetType="{x:Type Rectangle}">
+    <Setter Property="Stroke" Value="{StaticResource Brush.GenericPlcView.Stroke}" />
+    <Setter Property="StrokeThickness" Value="1" />
+    <Setter Property="Width" Value="18" />
+    <Setter Property="Height" Value="18" />
+  </Style>
+
+  <Style
+    x:Key="Rectangle.Green"
+    BasedOn="{StaticResource Retangle.Base}"
+    TargetType="{x:Type Rectangle}">
+    <Setter Property="Fill" Value="{StaticResource Brush.GenericPlcView.Fill.True}" />
+  </Style>
+
+  <Style
+    x:Key="Rectangle.Red"
+    BasedOn="{StaticResource Retangle.Base}"
+    TargetType="{x:Type Rectangle}">
+    <Setter Property="Fill" Value="{StaticResource Brush.GenericPlcView.Fill.False}" />
+  </Style>
+
+</ResourceDictionary>

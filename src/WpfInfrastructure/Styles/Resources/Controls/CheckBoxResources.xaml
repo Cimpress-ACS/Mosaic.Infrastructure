@@ -1,0 +1,207 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="../ValueResources.xaml" />
+        <ResourceDictionary
+            Source="../BrushResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style
+        TargetType="{x:Type CheckBox}">
+        <Setter Property="Background" Value="{StaticResource Brush.Button.Background.Alternate}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Brush.Button.Border.Normal}" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Label.Gauge.Foreground}" />
+        <Setter Property="Height" Value="88" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type CheckBox}">
+                    <Grid>
+                    	<Grid.ColumnDefinitions>
+                    		<ColumnDefinition Width="82"/>
+                    		<ColumnDefinition Width="Auto"/>
+                    	</Grid.ColumnDefinitions>
+                        <Rectangle
+                            x:Name="Shadow"
+                            Fill="Black"
+                            Opacity="{StaticResource Opacity.Shadow.Control}" Grid.ColumnSpan="1">
+                            <Rectangle.Margin>
+                                <Thickness
+                                    Bottom="0"
+                                    Left="0"
+                                    Right="0"
+                                    Top="{StaticResource Distance.Shadow.Control}" />
+                            </Rectangle.Margin>
+                        </Rectangle>
+                        <Rectangle
+                            Fill="{TemplateBinding Background}"
+                            Stroke="{TemplateBinding BorderBrush}"
+                            StrokeThickness="6" Grid.ColumnSpan="1">
+                            <Rectangle.Margin>
+                        		<Thickness
+                        			Bottom="{StaticResource Distance.Shadow.Control}"
+                        			Left="0"
+                        			Right="0"
+                        			Top="0" />
+                        	</Rectangle.Margin>
+                        </Rectangle>
+                        <Path
+                            x:Name="CheckMark"
+							Fill="{StaticResource Brush.Button.Border.Pressed}"
+                            Width="65"
+                            Height="50"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Data="M45,7L17,35 0,18 7,11 17.056,20.937 38,0z"
+                            Stretch="UniformToFill"
+                            Visibility="Collapsed" Grid.ColumnSpan="1">
+                            <Path.Margin>
+                        		<Thickness>8.5,16,8.5,22</Thickness>
+                        	</Path.Margin>
+                        </Path>
+                        <ContentPresenter Grid.Column="1" Height="Auto" Margin="5,0,0,0" VerticalAlignment="Center" Width="Auto"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{StaticResource Brush.Button.Background.Pressed}" />
+                <Setter Property="BorderBrush" Value="{StaticResource Brush.Button.Border.Pressed}" />
+                <Setter Property="Foreground" Value="{StaticResource Brush.Button.Foreground.Pressed}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <system:Double
+        x:Key="Size.Slider.CheckBox.SlideToggle">
+        36
+    </system:Double>
+    <GridLength x:Key="GridLength.Size.Slider.CheckBox.SlideToggle.Half">18</GridLength>
+    <Style
+        x:Key="Thumb.Slider.CheckBox.SlideToggle"
+        TargetType="{x:Type Thumb}">
+        <Setter Property="Width" Value="{StaticResource Size.Slider.CheckBox.SlideToggle}" />
+        <Setter Property="Height" Value="{StaticResource Size.Slider.CheckBox.SlideToggle}" />
+        <Setter Property="Background" Value="{StaticResource Brush.Background.Thumb.Slider.CheckBox.SlideToggle}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Brush.Forcing.Secondary}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type Thumb}">
+                    <Grid
+                        Margin="{TemplateBinding Padding}">
+                        <Ellipse
+                            Fill="{TemplateBinding Background}"
+                            Stroke="{TemplateBinding BorderBrush}"
+                            StrokeThickness="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style
+        x:Key="RepeatButton.Slider.CheckBox.SlideToggle"
+        TargetType="{x:Type RepeatButton}">
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type RepeatButton}">
+                    <Rectangle />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style
+        x:Key="Slider.CheckBox.SlideToggle"
+        TargetType="{x:Type Slider}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type Slider}">
+                    <Track>
+                        <Track.Thumb>
+                            <Thumb
+                                Style="{StaticResource Thumb.Slider.CheckBox.SlideToggle}" />
+                        </Track.Thumb>
+                        <Track.DecreaseRepeatButton>
+                            <RepeatButton
+                                Style="{StaticResource RepeatButton.Slider.CheckBox.SlideToggle}" />
+                        </Track.DecreaseRepeatButton>
+                        <Track.IncreaseRepeatButton>
+                            <RepeatButton
+                                Style="{StaticResource RepeatButton.Slider.CheckBox.SlideToggle}" />
+                        </Track.IncreaseRepeatButton>
+                    </Track>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style
+        x:Key="CheckBox.SlideToggle"
+        TargetType="{x:Type CheckBox}">
+        <Setter Property="Width" Value="124" />
+        <Setter Property="Height" Value="36" />
+        <Setter Property="FontFamily" Value="Miramonte" />
+        <Setter Property="FontSize" Value="26" />
+        <Setter Property="Background" Value="{StaticResource Brush.Button.Background.Alternate}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Brush.Forcing.Secondary}" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Label.Foreground.Standard}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type CheckBox}">
+                    <Grid>
+                        <Path
+                            Width="124"
+                            Height="36"
+                            HorizontalAlignment="Center"
+                            Data="F1M19.266,2C19.266,2 97.734,2 97.734,2 107.27,2 115,9.73 115,19.266 115,19.266 115,19.734 115,19.734 115,29.27 107.27,37 97.734,37 97.734,37 19.266,37 19.266,37 9.73,37 2,29.27 2,19.734 2,19.734 2,19.266 2,19.266 2,9.73 9.73,2 19.266,2z"
+                            Fill="{TemplateBinding Background}"
+                            Stretch="Fill"
+                            Stroke="{TemplateBinding BorderBrush}"
+                            StrokeThickness="1" />
+                        <TextBlock
+                            x:Name="StateTextBlock"
+                            Margin="10,0,0,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="{TemplateBinding Foreground}"
+                            Text="False" />
+                        <Slider
+                            x:Name="Slider"
+                            IsHitTestVisible="False"
+                            Style="{StaticResource Slider.CheckBox.SlideToggle}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Slider" Property="Value" Value="{Binding ElementName=Slider, Path=Maximum, Mode=OneWay}" />
+                            <Setter TargetName="StateTextBlock" Property="Text" Value="True" />
+                            <Setter TargetName="StateTextBlock" Property="Margin" Value="0,0,10,0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style
+        x:Key="CheckBox.SlideToggle.Forcing"
+        BasedOn="{StaticResource CheckBox.SlideToggle}"
+        TargetType="{x:Type CheckBox}">
+        <Setter Property="Background" Value="{StaticResource Brush.Forcing.Primary.Light}" />
+    </Style>
+
+</ResourceDictionary>

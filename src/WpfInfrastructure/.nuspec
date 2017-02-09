@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>ACS.Common.WpfInfrastructure</id>
+    <version>2.0.4.1</version>
+    <authors>Cimpress</authors>
+    <description>Common WPF infrastructure like styles, controls, behaviors, converters, effects etc.</description>
+    <projectUrl>https://github.com/Cimpress-ACS/Mosaic.Infrastructure</projectUrl>
+    <tags>ACS, UI, GUI</tags>
+    <dependencies>
+      <dependency id="ACS.Common.Infrastructure" version="2.0.12.0" />
+      <dependency id="System.Windows.Controls.DataVisualization.Toolkit" version="4.0.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\$configuration$\VP.FF.PT.Common.WpfInfrastructure.dll" target="lib\net45" />
+    <file src="bin\$configuration$\VP.FF.PT.Common.WpfInfrastructure.pdb" target="lib\net45" />
+  </files>
+</package>

@@ -1,0 +1,43 @@
+﻿<UserControl
+  x:Class="VP.FF.PT.Common.WpfInfrastructure.Screens.Views.BreadcrumbBarView"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:cal="http://www.caliburnproject.org"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:templateSelectors="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Screens.TemplateSelectors"
+  xmlns:viewModels="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Screens.ViewModels"
+  cal:Bind.AtDesignTime="True"
+  d:DataContext="{d:DesignInstance Type=viewModels:BreadcrumbBarViewModel, IsDesignTimeCreatable=True}"
+  d:DesignHeight="74"
+  d:DesignWidth="1000"
+  mc:Ignorable="d">
+
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+          Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/Resources/Controls/BreadcrumbBarResources.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+
+      <templateSelectors:ItemsControlPositionTemplateSelector
+        x:Key="BreadcrumbBarTemplateSelector"
+        FirstElementTemplate="{StaticResource ItemTemplate.BreadcrumbBar.Button.First}"
+        LastElementTemplate="{StaticResource ItemTemplate.BreadcrumbBar.Button.Last}"
+        MiddleElementTemplate="{StaticResource ItemTemplate.BreadcrumbBar.Button.Middle}"
+        SingleElementTemplate="{StaticResource ItemTemplate.BreadcrumbBar.Button.Single}" />
+    </ResourceDictionary>
+  </UserControl.Resources>
+
+  <ItemsControl
+    ItemTemplateSelector="{StaticResource BreadcrumbBarTemplateSelector}"
+    ItemsSource="{Binding Path=BreadcrumbBarItems}"
+    TextOptions.TextFormattingMode="Display">
+    <ItemsControl.ItemsPanel>
+      <ItemsPanelTemplate>
+        <StackPanel
+          Orientation="Horizontal" />
+      </ItemsPanelTemplate>
+    </ItemsControl.ItemsPanel>
+  </ItemsControl>
+</UserControl>

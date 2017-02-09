@@ -1,0 +1,383 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="IconResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="Icon.BadQuality"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Path Data="{StaticResource StreamGeometry.BadQualitySymbol}"
+                              Fill="{TemplateBinding Foreground}"
+                              Margin="20"/>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Icon.Calendar"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Path Data="{StaticResource StreamGeometry.CalendarSymbol}"
+                              Fill="{TemplateBinding Foreground}"/>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Icon.Calibration"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Path Data="{StaticResource StreamGeometry.CalibrationSymbol}"
+                              Fill="{TemplateBinding Foreground}"
+                              Margin="20"/>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="Icon.Clock"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Path Data="{StaticResource StreamGeometry.Clock}"
+                              Fill="{TemplateBinding Foreground}"/>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Icon.Document"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Margin="5,5"
+                             Width="{TemplateBinding Width}">
+                        <Path Data="{StaticResource StreamGeometry.DocumentSymbol}"
+                              Fill="{TemplateBinding Foreground}"/>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Icon.Drop"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Path Data="{StaticResource StreamGeometry.DropSymbol}"
+                              Fill="{TemplateBinding Foreground}"
+                              Margin="25"/>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="Icon.Pause"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Path Data="{StaticResource StreamGeometry.PauseSymbol}"
+                              Fill="{TemplateBinding Foreground}"
+                              Margin="10"/>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Icon.PrintModule"
+              TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ContentControl}">
+                    <Border Background="{TemplateBinding Foreground}">
+						<Viewbox Height="Auto"
+								 Width="Auto" Margin="5">
+							<Grid Background="{TemplateBinding Background}" 
+								  Height="200" Width="200">
+								<Path Data="{StaticResource StreamGeometry.PrintModuleSymbol}"
+									  Fill="{TemplateBinding Foreground}"
+									  Margin="33.334,45.833,33.333,56.667" Stretch="Fill"/>
+								<TextBlock Margin="92.412,88.306,92.631,75.444" FontSize="26" FontWeight="Bold"  Text="{TemplateBinding Content}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="36.25"/>
+							</Grid>
+						</Viewbox>
+					</Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Icon.Printer"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Path Data="{StaticResource StreamGeometry.PrinterSymbol}"
+                              Fill="{TemplateBinding Foreground}"
+                              Margin="25"/>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Icon.RemoteControl"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Path Data="{StaticResource StreamGeometry.RemoteControlSymbol}"
+                              Fill="{TemplateBinding Foreground}"/>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="Icon.SoonFilled"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ContentControl}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Grid Background="{TemplateBinding Background}" 
+                              Height="200" Width="200">
+                            <ContentControl Foreground="{TemplateBinding Foreground}"
+                                            Height="60"
+                                            Margin="-120,-120,0,0"
+                                            Style="{StaticResource Icon.WarnSign}" 
+                                            Width="60"/>
+                            <Path Data="{StaticResource StreamGeometry.SoonFilledSymbol}"
+                                  Fill="{TemplateBinding Foreground}"
+                                  Margin="70,40,0,0"/>
+                            <TextBlock Margin="120, 135,0,0" FontSize="26" FontWeight="Bold"  Text="{TemplateBinding Content}"/>
+                        </Grid>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Icon.Standby"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Path Data="{StaticResource StreamGeometry.StandbySymbol}" 
+                              Fill="{TemplateBinding Foreground}"
+                              Margin="5,0,-10,5"/>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Icon.Maintenance"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Path Data="{StaticResource StreamGeometry.MaintenanceSymbol}"
+                              Fill="{TemplateBinding Foreground}"
+                              Margin="20"/>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Icon.MaintenanceExit"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Grid Margin="10">
+                            <Path Data="{StaticResource StreamGeometry.ExitSymbol}"
+                                  Fill="{TemplateBinding Foreground}"
+                                  Width="110"/>
+                            <Viewbox Margin="-48,0,0,0" Height="35">
+                                <Path Data="{StaticResource StreamGeometry.MaintenanceSymbol}"
+                                      Fill="{TemplateBinding Foreground}" />
+                            </Viewbox>
+                        </Grid>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Icon.ManualControl"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Path Data="{StaticResource StreamGeometry.ManualControlSymbol}"
+                              Fill="{TemplateBinding Foreground}"/>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Icon.PressureLimit"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ContentControl}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Grid Background="{TemplateBinding Background}" 
+                              Height="200" Width="200">
+                            <ContentControl Foreground="{TemplateBinding Foreground}"
+                                            Height="60"
+                                            Margin="-120,-120,0,0"
+                                            Style="{StaticResource Icon.WarnSign}" 
+                                            Width="60"/>
+                            <Path Data="{StaticResource StreamGeometry.PressureLimitSymbol}"
+                                  Fill="{TemplateBinding Foreground}"
+                                  Margin="45,85,0,0"/>
+                            <TextBlock Margin="108,126,0,0" FontSize="26" FontWeight="Bold"  Text="{TemplateBinding Content}"/>
+                        </Grid>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Icon.Statistics"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Path Data="{StaticResource StreamGeometry.StatisticsSymbol}"
+                              Fill="{TemplateBinding Foreground}"/>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Icon.Stop"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Path Data="{StaticResource StreamGeometry.StopSymbol}"
+                              Fill="{TemplateBinding Foreground}"
+                              Margin="5"/>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Icon.Sum"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Margin="5,5"
+                             Width="{TemplateBinding Width}">
+                        <Path Data="{StaticResource StreamGeometry.SumSymbol}"
+                              Fill="{TemplateBinding Foreground}"/>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Icon.WaterSupply"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ContentControl}">
+                    <Viewbox Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}">
+                        <Grid Background="{TemplateBinding Background}" 
+                              Height="200" Width="200">
+                            <ContentControl Foreground="{TemplateBinding Foreground}"
+                                            Height="60"
+                                            Margin="-120,-120,0,0"
+                                            Style="{StaticResource Icon.WarnSign}" 
+                                            Width="60"/>
+                            <Path Data="{StaticResource StreamGeometry.WaterSupplySymbol}"
+                                  Fill="{TemplateBinding Foreground}"
+                                  Margin="80,30,0,0"/>
+                            <TextBlock Margin="115,130,0,0" FontSize="26" FontWeight="Bold"  Text="{TemplateBinding Content}"/>
+                        </Grid>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

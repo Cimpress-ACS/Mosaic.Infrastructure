@@ -1,0 +1,260 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Controls"
+    xmlns:converters="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Converters"
+    xmlns:effects="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Effects"
+    xmlns:model="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Screens.Model">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="../BrushResources.xaml" />
+        <ResourceDictionary
+            Source="../FontResources.xaml" />
+        <ResourceDictionary
+            Source="../IconResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <converters:IsPropertySetConverter
+        x:Key="IsPropertySetConverter" />
+    <converters:ShirtTypeToImageConverter
+        x:Key="ShirtTypeToImageConverter" />
+    <converters:DrawingColorToMediaColorConverter
+        x:Key="DrawingColorToMediaColorConverter" />
+    <converters:ShirtSizeToTextConverter
+        x:Key="ShirtSizeToTextConverter" />
+
+    <StreamGeometry
+        x:Key="StreamGeometry.Foil">
+        M0,42L0,14.688 15.433,0 54,0 54,42z
+    </StreamGeometry>
+
+    <DataTemplate
+        x:Key="Foil.Template"
+        DataType="{x:Type model:Foil}">
+        <Grid>
+            <Path
+                x:Name="PointOfInterestStroke"
+                Width="90"
+                Height="72"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Data="{StaticResource StreamGeometry.Foil}"
+                Fill="Gold"
+                Stretch="UniformToFill"
+                Stroke="Gold"
+                StrokeThickness="2"
+                Visibility="Hidden" />
+            <Path
+                Width="84"
+                Height="66"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Data="{StaticResource StreamGeometry.Foil}"
+                Fill="White"
+                Stretch="UniformToFill"
+                Stroke="Black"
+                StrokeThickness="2" />
+            <TextBlock
+                x:Name="SideTextBlock"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="60"
+                Foreground="{StaticResource Brush.Label.Foreground.Standard}"
+                Text="F" />
+        </Grid>
+        <DataTemplate.Triggers>
+            <DataTrigger
+                Binding="{Binding IsFrontSide}"
+                Value="False">
+                <Setter TargetName="SideTextBlock" Property="Text" Value="B" />
+            </DataTrigger>
+            <DataTrigger
+                Binding="{Binding IsPOI}"
+                Value="True">
+                <Setter TargetName="PointOfInterestStroke" Property="Visibility" Value="Visible" />
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+    <DataTemplate
+        x:Key="Shirt.Template">
+        <Grid
+            x:Name="ItemGrid"
+            RenderTransformOrigin="0.5,0.5"
+            UseLayoutRounding="True">
+            <Grid.RenderTransform>
+                <ScaleTransform
+                    x:Name="ScaleTransform" />
+            </Grid.RenderTransform>
+            <!--  POI  -->
+            <!--
+                <Image
+                x:Name="POI"
+                MaxWidth="75"
+                MaxHeight="75"
+                Source="{Binding CurrentShirt.ShirtType, Converter={StaticResource ShirtTypeToImageConverter}, ConverterParameter=POI}"
+                Visibility="Collapsed" />
+            -->
+            <Grid>
+                <!--  Shirt  -->
+                <Grid
+                    x:Name="POILine"
+                    Margin="2">
+                    <Image
+                        x:Name="Shirt"
+                        MaxWidth="75"
+                        MaxHeight="75"
+                        Source="{Binding CurrentShirt.ShirtTypeImage}"
+                        Tag="{Binding CurrentShirt.Color}">
+
+                        <Image.Effect>
+                            <effects:ColorOverlayEffect
+                                Color="{Binding CurrentShirt.Color, Converter={StaticResource DrawingColorToMediaColorConverter}}" />
+                        </Image.Effect>
+                    </Image>
+                </Grid>
+                <!--  Shirt Lines  -->
+
+                <Image
+                    x:Name="ShirtLines"
+                    MaxWidth="75"
+                    MaxHeight="75"
+                    Source="{Binding CurrentShirt.ShirtTypeImageOutline}" />
+
+                <!--  Premium  -->
+                <Image
+                    x:Name="Premium"
+                    MaxWidth="75"
+                    MaxHeight="75"
+                    Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;Component/Styles/Resources/Images/overlay_premium.png"
+                    Visibility="Collapsed" />
+
+                <!--  Print  -->
+                <Image
+                    x:Name="Print"
+                    MaxWidth="75"
+                    MaxHeight="75"
+                    Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;Component/Styles/Resources/Images/overlay_print_front.png"
+                    Visibility="Collapsed" />
+                <!--  Size  -->
+                <controls:OutlinedTextBlock
+                    MinWidth="30"
+                    Margin="7,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom"
+                    Fill="Black"
+                    FontFamily="{StaticResource FontFamily.Standard}"
+                    FontSize="18"
+                    FontStretch="Expanded"
+                    FontWeight="Bold"
+                    SnapsToDevicePixels="True"
+                    Stroke="White"
+                    StrokeThickness="1"
+                    Text="{Binding CurrentShirt.Size, Converter={StaticResource ShirtSizeToTextConverter}}" />
+                <Grid.CacheMode>
+                    <BitmapCache
+                        EnableClearType="True"
+                        RenderAtScale="1"
+                        SnapsToDevicePixels="True" />
+                </Grid.CacheMode>
+            </Grid>
+            <!--  Flagged  -->
+            <Image
+                x:Name="Flagged"
+                MaxWidth="75"
+                MaxHeight="75"
+                Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;Component/Styles/Resources/Images/overlay_flagged.png"
+                Visibility="Collapsed" />
+        </Grid>
+        <DataTemplate.Triggers>
+            <DataTrigger
+                Binding="{Binding CurrentShirt.ShirtState}"
+                Value="Flagged">
+                <Setter TargetName="Flagged" Property="Visibility" Value="Visible" />
+            </DataTrigger>
+            <DataTrigger
+                Binding="{Binding IsPOI}"
+                Value="True">
+                <!--  <Setter TargetName="POI" Property="Visibility" Value="Visible" />  -->
+                <Setter TargetName="POILine" Property="Effect">
+                    <Setter.Value>
+                        <effects:Stroke2_0Effect
+                            Width="{Binding ElementName=ShirtLines, Path=ActualWidth}"
+                            Height="{Binding ElementName=ShirtLines, Path=ActualHeight}"
+                            StrokeColor="Gold"
+                            StrokeMode="OUTER" />
+                    </Setter.Value>
+                </Setter>
+                <Setter TargetName="Shirt" Property="Margin" Value="-1" />
+            </DataTrigger>
+            <DataTrigger
+                Binding="{Binding CurrentShirt.ShirtMaterialType}"
+                Value="premium">
+                <Setter TargetName="Premium" Property="Visibility" Value="Visible" />
+            </DataTrigger>
+            <DataTrigger
+                Binding="{Binding CurrentShirt.FrontPrint, Converter={StaticResource IsPropertySetConverter}}"
+                Value="True">
+                <Setter TargetName="Print" Property="Visibility" Value="Visible" />
+            </DataTrigger>
+            <DataTrigger
+                Binding="{Binding CurrentShirt.BackPrint, Converter={StaticResource IsPropertySetConverter}}"
+                Value="True">
+                <Setter TargetName="Print" Property="Visibility" Value="Visible" />
+                <Setter TargetName="Print" Property="Source" Value="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;Component/Styles/Resources/Images/overlay_print_back.png" />
+            </DataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding CurrentShirt.FrontPrint, Converter={StaticResource IsPropertySetConverter}}" Value="True" />
+                    <Condition Binding="{Binding CurrentShirt.BackPrint, Converter={StaticResource IsPropertySetConverter}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="Print" Property="Visibility" Value="Visible" />
+                <Setter TargetName="Print" Property="Source" Value="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;Component/Styles/Resources/Images/overlay_print_frontBack.png" />
+            </MultiDataTrigger>
+            <DataTrigger
+                Binding="{Binding Path=IsRemoving}"
+                Value="true">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Duration="0:0:0.6"
+                                From="1"
+                                Storyboard.TargetName="ItemGrid"
+                                Storyboard.TargetProperty="Opacity"
+                                To="0" />
+                            <DoubleAnimation
+                                Duration="0:0:0.6"
+                                From="1"
+                                Storyboard.TargetName="ScaleTransform"
+                                Storyboard.TargetProperty="ScaleX"
+                                To="0" />
+                            <DoubleAnimation
+                                Duration="0:0:0.6"
+                                From="1"
+                                Storyboard.TargetName="ScaleTransform"
+                                Storyboard.TargetProperty="ScaleY"
+                                To="0" />
+                            <!--  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  -->
+                            <!--  From="{Binding Path=(FrameworkElement.ActualWidth), RelativeSource={RelativeSource TemplatedParent}}"  -->
+                            <!--  Diese Storyboard-Zeitleistenstruktur kann nicht für die threadübergreifende Verwendung fixiert werden.  -->
+                            <!--  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  -->
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+    <DataTemplate
+        x:Key="Hanger.Template">
+        <Image
+            MaxWidth="75"
+            MaxHeight="75"
+            SnapsToDevicePixels="True"
+            Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;Component/Styles/Resources/Images/hanger.png"
+            UseLayoutRounding="True" />
+    </DataTemplate>
+
+</ResourceDictionary>

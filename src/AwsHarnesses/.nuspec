@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Cimpress.ACS.AwsHarnesses</id>
+    <version>1.0.8.5</version>
+    <authors>Cimpress</authors>
+    <description>AWS wrapper and helper.</description>
+    <projectUrl>https://github.com/Cimpress-ACS/Mosaic.Infrastructure</projectUrl>
+    <tags>ACS, helpers</tags>
+    <dependencies>
+      <dependency id="ACS.Common.Infrastructure" version="2.1.4.2" />
+      <dependency id="AWSSDK.SimpleNotificationService" version="3.3.0.6" />
+      <dependency id="AWSSDK.SQS" version="3.3.1.6" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\$configuration$\Cimpress.ACS.AwsHarnesses.dll" target="lib\net45" />
+    <file src="bin\$configuration$\Cimpress.ACS.AwsHarnesses.pdb" target="lib\net45" />
+  </files>
+</package>

@@ -1,0 +1,96 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:animatedSlotPanel="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Controls.AnimatedSlotPanel"
+    xmlns:extensions="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Extensions">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="PlatformItemListBoxResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <extensions:PlatformItemTemplateSelector
+        x:Key="PlatformItemTemplateSelector"
+        ClampTemplate="{StaticResource Hanger.Template}"
+        PaperTemplate="{StaticResource Foil.Template}"
+        ShirtTemplate="{StaticResource Shirt.Template}" />
+
+    <Style
+        x:Key="ListBoxAssemblyLineStyle"
+        TargetType="ListBox">
+        <Setter Property="ItemTemplateSelector" Value="{StaticResource PlatformItemTemplateSelector}" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <animatedSlotPanel:AnimatedSlotPanel
+                        Width="{Binding Path=(FrameworkElement.ActualWidth), RelativeSource={RelativeSource TemplatedParent}}"
+                        Height="{Binding Path=(FrameworkElement.ActualHeight), RelativeSource={RelativeSource TemplatedParent}}"
+                        ClipToBounds="True"
+                        ColumnCount="{Binding Columns}"
+                        MergeAnimationDelay="0:0:0.6"
+                        MovementAnimationDuration="0:0:0.7"
+                        RowCount="{Binding Rows}" />
+                    <!--  ColumnCount="11"  -->
+                    <!--  RowCount="5"  -->
+                    <!--  d:DataContext="{d:DesignInstance viewModels:AssemblyLineViewModel}"  -->
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="ListBox">
+                    <Border
+                        Background="{StaticResource Application.Background.OuterBrush}"
+                        CornerRadius="{TemplateBinding extensions:AttachedProperties.CornerRadius}"
+                        SnapsToDevicePixels="true">
+                        <Grid>
+                            <Border
+                                Background="{StaticResource Application.Background.InnerBrush}"
+                                CornerRadius="{TemplateBinding extensions:AttachedProperties.CornerRadius}" />
+                            <Border
+                                Background="Black"
+                                CornerRadius="{TemplateBinding extensions:AttachedProperties.CornerRadius}"
+                                Opacity="0.1" />
+                            <!--
+                                <ScrollViewer
+                                Margin="0,5,0,5"
+                                Focusable="false"
+                                Style="{DynamicResource Style.ScrollViewer.ShirtListBox}">
+                            -->
+                            <ItemsPresenter
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            <!--  </ScrollViewer>  -->
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--
+            <Style.Triggers>
+            <DataTrigger
+            Binding="{Binding Path=(FrameworkElement.ActualWidth), RelativeSource={RelativeSource Self}, Converter={converters:DoubleLimitToBooleanConverter Limit=250.0}}"
+            Value="False">
+            <Setter Property="ItemTemplate" Value="{DynamicResource AssemblyLineSmallIconsDataTemplate}" />
+            </DataTrigger>
+            </Style.Triggers>
+        -->
+    </Style>
+
+    <Style
+        x:Key="ListBoxItemStyle"
+        TargetType="ListBoxItem">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="ListBoxItem">
+                    <ContentPresenter />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

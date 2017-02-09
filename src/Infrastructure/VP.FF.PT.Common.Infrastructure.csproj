@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{86D9C653-B7F7-40BA-9073-BE5936EC0460}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VP.FF.PT.Common.Infrastructure</RootNamespace>
+    <AssemblyName>VP.FF.PT.Common.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir>..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="bbv.Common">
+      <HintPath>..\..\nugetpackages\bbv.Common.7.1.12149.1635\lib\Net40\bbv.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="bbv.Common.AsyncModule">
+      <HintPath>..\..\nugetpackages\bbv.Common.AsyncModule.7.2.12149.1635\lib\Net40\bbv.Common.AsyncModule.dll</HintPath>
+    </Reference>
+    <Reference Include="bbv.Common.StateMachine">
+      <HintPath>..\..\nugetpackages\bbv.Common.StateMachine.7.4.12149.1635\lib\Net40\bbv.Common.StateMachine.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\nugetpackages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\nugetpackages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\nugetpackages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\nugetpackages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="StackExchange.Redis, Version=1.0.316.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\nugetpackages\StackExchange.Redis.1.0.488\lib\net45\StackExchange.Redis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.Composition.Registration" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\..\nugetpackages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\..\nugetpackages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\..\nugetpackages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\..\nugetpackages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Context" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assembling\EnumerableAssembler.cs" />
+    <Compile Include="Assembling\IAssemble.cs" />
+    <Compile Include="Assembling\NullFilteringEnumerableAssembler.cs" />
+    <Compile Include="Bootstrapper\BootstrapperConfigSection\AdditionalLookupPathsConfigCollection.cs" />
+    <Compile Include="Bootstrapper\BootstrapperConfigSection\BootrapperConfiguration.cs" />
+    <Compile Include="Bootstrapper\BootstrapperConfigSection\BootstrapperConfigSection.cs" />
+    <Compile Include="Bootstrapper\BootstrapperConfigSection\IgnorePathsConfigCollection.cs" />
+    <Compile Include="Bootstrapper\BootstrapperUtil.cs" />
+    <Compile Include="Bootstrapper\MefBootstrapper.cs" />
+    <Compile Include="Bootstrapper\RegistrationBuilder.cs" />
+    <Compile Include="Bootstrapper\SafeRecursiveDirectoryCatalog.cs" />
+    <Compile Include="Bootstrapper\ShutdownEvent.cs" />
+    <Compile Include="CallingMethod.cs" />
+    <Compile Include="CommandLineHelper.cs" />
+    <Compile Include="Concurrency\ApplicationDispatcher.cs" />
+    <Compile Include="Concurrency\GlobalLock.cs" />
+    <Compile Include="Concurrency\IApplicationDispatcher.cs" />
+    <Compile Include="Concurrency\IGlobalLock.cs" />
+    <Compile Include="ConcurrentQueueExtensions.cs" />
+    <Compile Include="Credentials\ConfigurationAccessor.cs" />
+    <Compile Include="Credentials\CredentialConfig.cs" />
+    <Compile Include="Credentials\CredentialConfigCollection.cs" />
+    <Compile Include="Credentials\CredentialConfigSection.cs" />
+    <Compile Include="Credentials\IProvideConfiguration.cs" />
+    <Compile Include="Credentials\IWindowsCredentialToolBox.cs" />
+    <Compile Include="Credentials\WindowsCredentialToolBox.cs" />
+    <Compile Include="Credentials\WindowsCredentialTypes.cs" />
+    <Compile Include="Csv\CsvReader.cs" />
+    <Compile Include="Csv\CsvRow.cs" />
+    <Compile Include="Csv\CsvWriter.cs" />
+    <Compile Include="CurrentTimeProvider.cs" />
+    <Compile Include="Database\CreateOrMigrateDatabaseInitializer.cs" />
+    <Compile Include="Database\DatabaseListener.cs" />
+    <Compile Include="Database\DbChanges.cs" />
+    <Compile Include="Database\IConnectionStringProvider.cs" />
+    <Compile Include="Database\IDatabaseListener.cs" />
+    <Compile Include="Database\PollingDatabaseListener.cs" />
+    <Compile Include="ExceptionExtensions.cs" />
+    <Compile Include="FileAccess\FileSystemAccessor.cs" />
+    <Compile Include="FileAccess\IAccessFileSystem.cs" />
+    <Compile Include="FileAccess\ICopyFile.cs" />
+    <Compile Include="FileAccess\IDeleteFile.cs" />
+    <Compile Include="FileAccess\ILoadFromFileSystem.cs" />
+    <Compile Include="FileAccess\IPathExists.cs" />
+    <Compile Include="FileAccess\ISaveToFileSystem.cs" />
+    <Compile Include="HashHelper.cs" />
+    <Compile Include="IShutdown.cs" />
+    <Compile Include="Logging\ConsoleOutLogger.cs" />
+    <Compile Include="Logging\InMemoryLogger.cs" />
+    <Compile Include="Logging\InMemoryLogsContainer.cs" />
+    <Compile Include="Logging\IProvideLogMessages.cs" />
+    <Compile Include="Logging\GenericJsonLog.cs" />
+    <Compile Include="Logging\GenericJsonLogLayout.cs" />
+    <Compile Include="Logging\LogEventArgs.cs" />
+    <Compile Include="Logging\LoggerWithEvent.cs" />
+    <Compile Include="Logging\LogMessage.cs" />
+    <Compile Include="Logging\NullLogger.cs" />
+    <Compile Include="Logging\RedisAppender.cs" />
+    <Compile Include="Logging\RedisJsonLog.cs" />
+    <Compile Include="Logging\RedisLayout.cs" />
+    <Compile Include="Net\NetworkConnectionFactoryExtensions.cs" />
+    <Compile Include="SingleActionScheduler.cs" />
+    <Compile Include="Logging\Structured\IPerformanceLogger.cs" />
+    <Compile Include="Logging\Structured\PerformanceData.cs" />
+    <Compile Include="Logging\Structured\PerformanceLogger.cs" />
+    <Compile Include="StringExtensions.cs" />
+    <Compile Include="Versioning.cs" />
+    <Compile Include="Net\INetworkConnectionFactory.cs" />
+    <Compile Include="Net\NetResource.cs" />
+    <Compile Include="Net\NetworkConnection.cs" />
+    <Compile Include="Net\NetworkConnectionFactory.cs" />
+    <Compile Include="Net\NetworkDisconnector.cs" />
+    <Compile Include="Net\ResourceDisplaytype.cs" />
+    <Compile Include="Net\ResourceScope.cs" />
+    <Compile Include="Net\ResourceType.cs" />
+    <Compile Include="Net\ResourceUsage.cs" />
+    <Compile Include="WaitCursorHelper.cs" />
+    <Compile Include="DictionaryExtensions.cs" />
+    <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="FileInfoExtensions.cs" />
+    <Compile Include="IPlatformScheduler.cs" />
+    <Compile Include="ItemTracking\FifoItemRouter.cs" />
+    <Compile Include="ItemTracking\FifoItemRouterWithCount.cs" />
+    <Compile Include="ItemTracking\ICountingItemRouter.cs" />
+    <Compile Include="ItemTracking\IFifoItemRouter.cs" />
+    <Compile Include="ItemTracking\IFifoItemRouterWithCount.cs" />
+    <Compile Include="ItemTracking\IItemRouter.cs" />
+    <Compile Include="ItemTracking\UniqueItemRouter.cs" />
+    <Compile Include="Logging\GenericJSLogLayout.cs" />
+    <Compile Include="Retry.cs" />
+    <Compile Include="SchedulerExtensions.cs" />
+    <Compile Include="SequentialScheduler.cs" />
+    <Compile Include="TreeExtensions.cs" />
+    <Compile Include="WaitingScheduler.cs" />
+    <Compile Include="Wcf\CallTimer.cs" />
+    <Compile Include="Wcf\EndpointCallTimerBehavior.cs" />
+    <Compile Include="Wcf\EndpointCallTimerElement.cs" />
+    <Compile Include="Wcf\GenericBehaviorExtensionElement.cs" />
+    <Compile Include="Wcf\ServiceCallTimerBehavior.cs" />
+    <Compile Include="Wcf\ServiceCallTimerElement.cs" />
+    <Compile Include="Wcf\WcfEventSubscriber.cs" />
+    <Compile Include="Wcf\WcfPerformanceData.cs" />
+    <Compile Include="WebHelper.cs" />
+    <Compile Include="EventAggregator.cs" />
+    <Compile Include="FifoSemaphore.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="IEventAggregator.cs" />
+    <Compile Include="ILinkedListScanner.cs" />
+    <Compile Include="IProvideTime.cs" />
+    <Compile Include="ISafeEventRaiser.cs" />
+    <Compile Include="ISemaphore.cs" />
+    <Compile Include="LinkedListScanner.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="ObservableCollectionExtensions.cs" />
+    <Compile Include="PingCheck.cs" />
+    <Compile Include="Logging\AggregatedLogger.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\ILoggerExtension.cs" />
+    <Compile Include="Logging\Log4NetLogger.cs" />
+    <Compile Include="ObjectExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyHelper.cs" />
+    <Compile Include="SafeEventRaiser.cs" />
+    <Compile Include="StateMachineLoggerExtension.cs" />
+    <Compile Include="Wcf\ICallbackChannelProvider.cs" />
+    <Compile Include="Wcf\OperationContextAdapter.cs" />
+    <Compile Include="Wcf\WcfServiceConfiguration.cs" />
+    <Compile Include="Wcf\Extensions.cs" />
+    <Compile Include="Wcf\HttpBindingUtility.cs" />
+    <Compile Include="Wcf\TcpBindingUtility.cs" />
+    <Compile Include="Wcf\WcfServiceConfigurationSection.cs" />
+    <Compile Include="Wcf\WcfServiceFault.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".nuspec">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,12 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ResourceDictionary.MergedDictionaries>
+
+    <ResourceDictionary
+      Source="/VP.FF.PT.Common.WpfInfrastructure;component/Styles/DefaultStyles.xaml" />
+    <ResourceDictionary
+      Source="pack://application:,,,/VP.FF.PT.Common.WpfInfrastructure;component/Styles/SaberStyles.xaml" />
+
+  </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

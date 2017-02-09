@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Namespace xmlns="file://c/vp/devenv/xsd/namespace.xsd">
+  <Module>
+    <DisplayName>FF PT Common Wpf Infrastructure</DisplayName>
+    <Category>UtilityComponent</Category>
+    <Description />
+  </Module>
+  <Tier>Logic</Tier>
+  <Ownership>
+    <Owner />
+    <Backup />
+  </Ownership>
+</Namespace>

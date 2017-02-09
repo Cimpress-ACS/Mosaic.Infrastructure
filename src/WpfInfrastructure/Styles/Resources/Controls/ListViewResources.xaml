@@ -1,0 +1,197 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Converters"
+    xmlns:extensions="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Extensions"
+    xmlns:templateSelectors="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Screens.TemplateSelectors"
+    xmlns:viewModels="clr-namespace:VP.FF.PT.Common.WpfInfrastructure.Screens.ViewModels">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="ButtonResources.xaml" />
+        <ResourceDictionary
+            Source="../ConverterResources.xaml" />
+        <ResourceDictionary
+            Source="TagValueControlResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style
+        x:Key="Button.Round.Wide"
+        TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily.Standard}" />
+        <Setter Property="Background" Value="{StaticResource Brush.Button.Background.Normal}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type Button}">
+                    <Border
+                        x:Name="OuterBorder"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding Foreground}"
+                        BorderThickness="1"
+                        CornerRadius="10">
+                        <Grid>
+                            <ContentPresenter
+                                Margin="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="OuterBorder" Property="Background" Value="{StaticResource Brush.Button.Background.Pressed}" />
+                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{StaticResource Brush.Button.Border.Pressed}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="ListView.ReadonlyRoute"
+        TargetType="{x:Type ListView}">
+        <!--  Disable to make it readonly and remove trigger styling for IsEnabled  -->
+        <Setter Property="IsEnabled" Value="False" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type ListView}">
+                    <WrapPanel
+                        IsItemsHost="True"
+                        Orientation="Horizontal"
+                        TextBlock.Foreground="{TemplateBinding Foreground}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style
+                    TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+                    <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+                    <Setter Property="Padding" Value="3,0,3,0" />
+                    <Setter Property="Margin" Value="1,0,1,0" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate
+                                TargetType="{x:Type ListViewItem}">
+                                <Border
+                                    x:Name="Bd"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Padding="{TemplateBinding Padding}"
+                                    SnapsToDevicePixels="true">
+                                    <ContentPresenter
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsSelected" Value="true" />
+                                            <Condition Property="Selector.IsSelectionActive" Value="false" />
+                                        </MultiTrigger.Conditions>
+                                        <Setter TargetName="Bd" Property="Background" Value="{StaticResource Brush.DetailView.Highlight}" />
+                                        <Setter Property="Foreground" Value="{StaticResource Brush.DetailView.Foreground}" />
+                                    </MultiTrigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="SimpleListViewStyle"
+        TargetType="ListView">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="ListView">
+                    <Border
+                        Padding="{TemplateBinding Padding}">
+                        <ScrollViewer
+                            x:Name="ScrollViewer"
+                            Margin="2,1"
+                            Focusable="False"
+                            HorizontalScrollBarVisibility="Hidden"
+                            Style="{DynamicResource SmartScrollViewerStyle}">
+                            <ItemsPresenter
+                                Margin="0" />
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="TagValueListViewStyle"
+        TargetType="ListView">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="ItemTemplateSelector">
+            <Setter.Value>
+                <templateSelectors:TagValueTemplateSelector
+                    BooleanValue="{StaticResource BooleanValue}"
+                    IntValue="{StaticResource IntegerValue}"
+                    ReadOnlyValue="{StaticResource ReadOnlyValue}"
+                    StringValue="{StaticResource StringValue}"
+                    EnumerationValue="{StaticResource EnumValue}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="SimpleItemContainerStyle"
+        TargetType="ListViewItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="ListViewItem">
+                    <Border>
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <DataTemplate
+        x:Key="CommandDataTemplate"
+        DataType="viewModels:CommandViewModel">
+        <Grid
+            Margin="10,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Command="{TemplateBinding extensions:AttachedProperties.AttachedCommand}"
+                CommandParameter="{Binding Path=CommandName}"
+                Content="{Binding CommandName, Converter={converters:StringToUpperStringConverter}}"
+                Style="{StaticResource Button.Command}" />
+            <TextBlock
+                Grid.Column="1"
+                MaxWidth="284"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                FontFamily="{StaticResource FontFamily.Standard}"
+                FontSize="{StaticResource FontSize.Accordion.Content}"
+                Foreground="{StaticResource Brush.Label.Foreground.Standard}"
+                Text="{Binding OptionalText}"
+                TextWrapping="Wrap" />
+        </Grid>
+    </DataTemplate>
+
+
+</ResourceDictionary>

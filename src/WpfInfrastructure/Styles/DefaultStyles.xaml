@@ -1,0 +1,224 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <ControlTemplate
+    x:Key="TextBoxErrorTemplate"
+    TargetType="{x:Type Control}">
+    <Grid
+      ClipToBounds="False">
+      <Border
+        Margin="-1"
+        BorderBrush="Red"
+        BorderThickness="1">
+        <AdornedElementPlaceholder
+          x:Name="adornedElement" />
+      </Border>
+    </Grid>
+  </ControlTemplate>
+
+  <Style
+    x:Key="Label"
+    BasedOn="{StaticResource {x:Type TextBlock}}"
+    TargetType="{x:Type TextBlock}">
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <Style
+    BasedOn="{StaticResource {x:Type Button}}"
+    TargetType="{x:Type Button}">
+    <Setter Property="Width" Value="90" />
+    <Setter Property="Height" Value="24" />
+  </Style>
+
+  <Style
+    x:Key="BigButtonStyle"
+    BasedOn="{StaticResource {x:Type Button}}"
+    TargetType="{x:Type Button}">
+    <Setter Property="Width" Value="120" />
+    <Setter Property="Height" Value="44" />
+  </Style>
+
+  <Style
+    x:Key="GrayLabel"
+    BasedOn="{StaticResource {x:Type TextBlock}}"
+    TargetType="{x:Type TextBlock}">
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="Foreground" Value="Gray" />
+    <Setter Property="FontSize" Value="10" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <Style
+    x:Key="BooleanToggleButtonStyle"
+    BasedOn="{StaticResource {x:Type ToggleButton}}"
+    TargetType="{x:Type ToggleButton}">
+    <Setter Property="Width" Value="40" />
+    <Setter Property="Height" Value="28" />
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="Content" Value="0" />
+    <Style.Triggers>
+      <Trigger Property="IsChecked" Value="True">
+        <Setter Property="Content" Value="1" />
+      </Trigger>
+      <Trigger Property="IsChecked" Value="{x:Null}">
+        <Setter Property="Content" Value="?" />
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style
+    BasedOn="{StaticResource {x:Type Label}}"
+    TargetType="{x:Type Label}">
+    <Setter Property="FontWeight" Value="Normal" />
+  </Style>
+
+  <Style
+    BasedOn="{StaticResource {x:Type ToggleButton}}"
+    TargetType="{x:Type ToggleButton}">
+    <!--  <Setter Property="Width" Value="90" />  -->
+    <!--  <Setter Property="Height" Value="24" />  -->
+  </Style>
+
+  <Style
+    x:Key="TextBoxStyle"
+    BasedOn="{StaticResource {x:Type TextBox}}"
+    TargetType="{x:Type TextBox}">
+    <Setter Property="Height" Value="23" />
+  </Style>
+
+  <Style
+    x:Key="ReadOnlyTextBoxStyle"
+    BasedOn="{StaticResource {x:Type TextBox}}"
+    TargetType="{x:Type TextBox}">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Height" Value="20" />
+    <Setter Property="IsReadOnly" Value="True" />
+
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate
+          TargetType="{x:Type TextBox}">
+
+          <Border
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}">
+            <ScrollViewer
+              x:Name="PART_ContentHost" />
+          </Border>
+
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter Property="Foreground" Value="Gray" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+
+  </Style>
+
+  <Style
+    x:Key="StretchableHeaderedContentControl"
+    BasedOn="{StaticResource {x:Type HeaderedContentControl}}"
+    TargetType="HeaderedContentControl">
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate
+          TargetType="HeaderedContentControl">
+          <DockPanel>
+            <ContentPresenter
+              ContentSource="Header"
+              DockPanel.Dock="Top" />
+            <ContentPresenter
+              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+          </DockPanel>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style
+    x:Key="CollapseAllButtonStyle"
+    TargetType="{x:Type ButtonBase}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate
+          TargetType="{x:Type Button}">
+          <Border
+            x:Name="border"
+            Margin="0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            BorderBrush="#FF8D8D8D"
+            BorderThickness="1"
+            CornerRadius="12">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup
+                x:Name="ValidationStates">
+                <VisualState
+                  x:Name="InvalidFocused" />
+                <VisualState
+                  x:Name="InvalidUnfocused" />
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border
+              x:Name="border1"
+              Background="#FFB6B6B6"
+              BorderBrush="#FFA0A0A0"
+              BorderThickness="1"
+              CornerRadius="12">
+              <Grid
+                Margin="0,1,0,-1">
+                <Path
+                  Width="14"
+                  Height="7"
+                  Margin="3.25,3,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Data="M4.5003984,14.499796 C10.500266,6.499404 10.500266,6.4994041 10.500266,6.4994041 L16.500134,14.499796"
+                  Fill="{x:Null}"
+                  Stretch="Fill"
+                  Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"
+                  StrokeThickness="2" />
+                <Path
+                  Width="14"
+                  Height="7"
+                  Margin="3.25,8,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Data="M4.5003984,14.499796 C10.500266,6.499404 10.500266,6.4994041 10.500266,6.4994041 L16.500134,14.499796"
+                  Fill="{x:Null}"
+                  Stretch="Fill"
+                  Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"
+                  StrokeThickness="2" />
+              </Grid>
+            </Border>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="border" Property="BorderBrush">
+                <Setter.Value>
+                  <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}" />
+                </Setter.Value>
+              </Setter>
+              <Setter TargetName="border1" Property="BorderBrush">
+                <Setter.Value>
+                  <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}" />
+                </Setter.Value>
+              </Setter>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+              <Setter TargetName="border" Property="BorderBrush" Value="#FF5F5F5F" />
+              <Setter TargetName="border1" Property="BorderBrush" Value="#FF535353" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+</ResourceDictionary>
